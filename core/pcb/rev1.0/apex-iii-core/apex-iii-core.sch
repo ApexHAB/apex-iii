@@ -21118,6 +21118,10 @@ Cermet, abgedichtet nach IP67</description>
 <part name="P+17" library="SparkFun" deviceset="VCC" device=""/>
 <part name="GND31" library="SparkFun" deviceset="GND" device=""/>
 <part name="JP6" library="apex" deviceset="APEXHAB-LOGO" device="_APEXHAB"/>
+<part name="I2C_RES" library="rcl" deviceset="R-EU_" device="R0603" value="4K7"/>
+<part name="I2C_RES1" library="rcl" deviceset="R-EU_" device="R0603" value="4K7"/>
+<part name="P+18" library="SparkFun" deviceset="VCC" device=""/>
+<part name="P+19" library="SparkFun" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -21213,9 +21217,9 @@ Cermet, abgedichtet nach IP67</description>
 <attribute name="NAME" x="126.619" y="199.644" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="126.619" y="197.104" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="FTDI" gate="G$1" x="264.16" y="228.6" smashed="yes" rot="R180">
-<attribute name="NAME" x="269.24" y="217.678" size="1.778" layer="95" rot="R180"/>
-<attribute name="VALUE" x="276.86" y="238.76" size="1.778" layer="96" rot="R180"/>
+<instance part="FTDI" gate="G$1" x="307.34" y="215.9" smashed="yes" rot="R180">
+<attribute name="NAME" x="312.42" y="204.978" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="320.04" y="226.06" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="ICSP" gate="G$1" x="289.56" y="165.1" smashed="yes">
 <attribute name="NAME" x="283.21" y="171.45" size="1.778" layer="95" ratio="10"/>
@@ -21230,8 +21234,8 @@ Cermet, abgedichtet nach IP67</description>
 <attribute name="VALUE" x="240.03" y="173.482" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="FRAME2" gate="G$1" x="0" y="0"/>
-<instance part="GND9" gate="1" x="254" y="220.98" rot="R270"/>
-<instance part="C10" gate="G$1" x="254" y="243.84"/>
+<instance part="GND9" gate="1" x="297.18" y="208.28" rot="R270"/>
+<instance part="C10" gate="G$1" x="297.18" y="231.14"/>
 <instance part="P+6" gate="1" x="274.32" y="167.64"/>
 <instance part="GND10" gate="1" x="274.32" y="160.02"/>
 <instance part="TEMP" gate="-1" x="73.66" y="121.92" smashed="yes">
@@ -21388,6 +21392,10 @@ Cermet, abgedichtet nach IP67</description>
 <instance part="P+17" gate="1" x="200.66" y="132.08" rot="R90"/>
 <instance part="GND31" gate="1" x="198.12" y="116.84" rot="R270"/>
 <instance part="JP6" gate="G$1" x="317.5" y="25.4"/>
+<instance part="I2C_RES" gate="G$1" x="256.54" y="228.6" rot="R270"/>
+<instance part="I2C_RES1" gate="G$1" x="238.76" y="233.68" rot="R270"/>
+<instance part="P+18" gate="1" x="256.54" y="236.22"/>
+<instance part="P+19" gate="1" x="238.76" y="241.3"/>
 </instances>
 <busses>
 </busses>
@@ -21443,7 +21451,7 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="GND8" gate="1" pin="GND"/>
 </segment>
 <segment>
-<wire x1="256.54" y1="220.98" x2="259.08" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="299.72" y1="208.28" x2="302.26" y2="208.28" width="0.1524" layer="91"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 <pinref part="FTDI" gate="G$1" pin="6"/>
 </segment>
@@ -21765,6 +21773,16 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="P+17" gate="1" pin="VCC"/>
 <pinref part="I2C-3" gate="-1" pin="S"/>
 </segment>
+<segment>
+<pinref part="I2C_RES1" gate="G$1" pin="1"/>
+<pinref part="P+19" gate="1" pin="VCC"/>
+<wire x1="238.76" y1="241.3" x2="238.76" y2="238.76" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="P+18" gate="1" pin="VCC"/>
+<pinref part="I2C_RES" gate="G$1" pin="1"/>
+<wire x1="256.54" y1="236.22" x2="256.54" y2="233.68" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VBATT" class="0">
 <segment>
@@ -21843,8 +21861,8 @@ Cermet, abgedichtet nach IP67</description>
 </net>
 <net name="N$9" class="0">
 <segment>
-<wire x1="243.84" y1="231.14" x2="259.08" y2="231.14" width="0.1524" layer="91"/>
-<wire x1="243.84" y1="231.14" x2="243.84" y2="208.28" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="218.44" x2="302.26" y2="218.44" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="218.44" x2="243.84" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="243.84" y1="208.28" x2="218.44" y2="208.28" width="0.1524" layer="91"/>
 <pinref part="ARDUINO-ATMEGA328" gate="1" pin="DIGITAL_1(TX)"/>
 <pinref part="FTDI" gate="G$1" pin="2"/>
@@ -21852,9 +21870,9 @@ Cermet, abgedichtet nach IP67</description>
 </net>
 <net name="N$10" class="0">
 <segment>
-<wire x1="259.08" y1="228.6" x2="241.3" y2="228.6" width="0.1524" layer="91"/>
+<wire x1="302.26" y1="215.9" x2="241.3" y2="215.9" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="210.82" x2="241.3" y2="210.82" width="0.1524" layer="91"/>
-<wire x1="241.3" y1="210.82" x2="241.3" y2="228.6" width="0.1524" layer="91"/>
+<wire x1="241.3" y1="210.82" x2="241.3" y2="215.9" width="0.1524" layer="91"/>
 <pinref part="FTDI" gate="G$1" pin="3"/>
 <pinref part="ARDUINO-ATMEGA328" gate="1" pin="DIGITAL_0(RX)"/>
 </segment>
@@ -21868,8 +21886,8 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="RESET" gate="G$1" pin="2"/>
 </segment>
 <segment>
-<wire x1="254" y1="248.92" x2="254" y2="251.46" width="0.1524" layer="91"/>
-<label x="254" y="251.46" size="1.778" layer="95" xref="yes"/>
+<wire x1="297.18" y1="236.22" x2="297.18" y2="238.76" width="0.1524" layer="91"/>
+<label x="297.18" y="238.76" size="1.778" layer="95" xref="yes"/>
 <pinref part="C10" gate="G$1" pin="1"/>
 </segment>
 <segment>
@@ -21899,8 +21917,8 @@ Cermet, abgedichtet nach IP67</description>
 </net>
 <net name="N$4" class="0">
 <segment>
-<wire x1="259.08" y1="233.68" x2="254" y2="233.68" width="0.1524" layer="91"/>
-<wire x1="254" y1="233.68" x2="254" y2="241.3" width="0.1524" layer="91"/>
+<wire x1="302.26" y1="220.98" x2="297.18" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="297.18" y1="220.98" x2="297.18" y2="228.6" width="0.1524" layer="91"/>
 <pinref part="FTDI" gate="G$1" pin="1"/>
 <pinref part="C10" gate="G$1" pin="2"/>
 </segment>
@@ -22128,9 +22146,13 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="I2C-2" gate="-3" pin="S"/>
 </segment>
 <segment>
-<wire x1="218.44" y1="223.52" x2="220.98" y2="223.52" width="0.1524" layer="91"/>
-<label x="220.98" y="223.52" size="1.27" layer="95" xref="yes"/>
+<label x="241.3" y="223.52" size="1.27" layer="95" xref="yes"/>
 <pinref part="ARDUINO-ATMEGA328" gate="1" pin="ANALOG_4"/>
+<pinref part="I2C_RES1" gate="G$1" pin="2"/>
+<wire x1="218.44" y1="223.52" x2="238.76" y2="223.52" width="0.1524" layer="91"/>
+<wire x1="238.76" y1="223.52" x2="241.3" y2="223.52" width="0.1524" layer="91"/>
+<wire x1="238.76" y1="228.6" x2="238.76" y2="223.52" width="0.1524" layer="91"/>
+<junction x="238.76" y="223.52"/>
 </segment>
 <segment>
 <wire x1="203.2" y1="121.92" x2="200.66" y2="121.92" width="0.1524" layer="91"/>
@@ -22150,9 +22172,13 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="I2C-2" gate="-2" pin="S"/>
 </segment>
 <segment>
-<wire x1="218.44" y1="220.98" x2="220.98" y2="220.98" width="0.1524" layer="91"/>
-<label x="220.98" y="220.98" size="1.27" layer="95" xref="yes"/>
+<label x="261.62" y="220.98" size="1.27" layer="95" xref="yes"/>
 <pinref part="ARDUINO-ATMEGA328" gate="1" pin="ANALOG_5"/>
+<pinref part="I2C_RES" gate="G$1" pin="2"/>
+<wire x1="218.44" y1="220.98" x2="256.54" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="256.54" y1="220.98" x2="261.62" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="256.54" y1="223.52" x2="256.54" y2="220.98" width="0.1524" layer="91"/>
+<junction x="256.54" y="220.98"/>
 </segment>
 <segment>
 <wire x1="203.2" y1="127" x2="200.66" y2="127" width="0.1524" layer="91"/>
