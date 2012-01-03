@@ -45,7 +45,7 @@
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
 <layer number="51" name="tDocu" color="6" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
@@ -13431,7 +13431,7 @@ design rules under a new name.</description>
 <element name="MICRO-SD" library="matt_brejza" package="MICRO-SD-PUSH-PULL" value="USD-SOCKET" x="95.25" y="35.56" rot="R90"/>
 <element name="GPS" library="SparkFun" package="LASSEN_IQ_GPS" value="LASSEN_IQ_GPSLASSEN" x="58.674" y="27.94" rot="R270"/>
 <element name="TEMP_DCPLG" library="SparkFun" package="0805" value="100nF" x="27.178" y="39.116" rot="R180"/>
-<element name="GPS_DCPLG" library="SparkFun" package="0805" value="100nF" x="56.642" y="31.75" rot="R270"/>
+<element name="GPS_DCPLG" library="SparkFun" package="0805" value="100nF" x="56.642" y="30.734" rot="R270"/>
 <element name="NTR2_DCPLG2" library="SparkFun" package="0805" value="100uF" x="33.782" y="2.286" rot="R90"/>
 <element name="SD_DCPLG" library="SparkFun" package="0805" value="100nF" x="81.28" y="37.338" rot="R180"/>
 <element name="VREG" library="linear-technology" package="SOIC8" value="LT1763CS8-3.3" x="93.98" y="14.224" rot="R270">
@@ -13508,12 +13508,12 @@ design rules under a new name.</description>
 <element name="BATT2" library="apex" package="R0805" value="22K" x="88.138" y="7.874" rot="R180"/>
 <element name="RES_PWR" library="apex" package="R0805" value="1K5" x="88.138" y="5.588"/>
 <element name="1WIRE" library="apex" package="R0805" value="4K7" x="23.368" y="36.576" rot="R180"/>
-<element name="GPS_RES1" library="apex" package="R0805" value="100K" x="58.674" y="31.75" rot="R90"/>
-<element name="GPS_RES3" library="apex" package="R0805" value="1K" x="63.246" y="31.75" rot="R270"/>
-<element name="GPS_RES2" library="apex" package="R0805" value="100K" x="60.96" y="31.75" rot="R90"/>
-<element name="I2C_RES1" library="apex" package="R0805" value="4K7" x="34.036" y="39.878" rot="R270"/>
-<element name="I2C_RES2" library="apex" package="R0805" value="4K7" x="30.988" y="39.878" rot="R270"/>
-<element name="STATUS_RES" library="apex" package="R0805" value="1K5" x="58.166" y="40.132" rot="R270"/>
+<element name="GPS_RES1" library="apex" package="R0805" value="100K" x="58.674" y="30.734" rot="R90"/>
+<element name="GPS_RES3" library="apex" package="R0805" value="1K" x="60.96" y="30.734" rot="R270"/>
+<element name="GPS_RES2" library="apex" package="R0805" value="100K" x="63.246" y="30.734" rot="R90"/>
+<element name="I2C_RES1" library="apex" package="R0805" value="4K7" x="34.036" y="39.878" rot="R90"/>
+<element name="I2C_RES2" library="apex" package="R0805" value="4K7" x="30.988" y="39.878" rot="R90"/>
+<element name="STATUS_RES" library="apex" package="R0805" value="1K5" x="58.166" y="40.132" rot="R90"/>
 <element name="MISO_RES" library="apex" package="R0805" value="1K" x="81.28" y="39.624"/>
 <element name="CS_PULL_UP" library="apex" package="R0805" value="4K7" x="81.28" y="41.91"/>
 <element name="NTR2_RES1" library="apex" package="R0805" value="22K" x="31.75" y="2.286" rot="R270"/>
@@ -13595,9 +13595,6 @@ design rules under a new name.</description>
 <via x="20.32" y="6.35" extent="1-16" drill="0.508"/>
 <wire x1="89.038" y1="7.924" x2="89.088" y2="7.874" width="0.254" layer="1"/>
 <via x="61.976" y="36.068" extent="1-16" drill="0.508"/>
-<wire x1="61.94" y1="25.188" x2="57.362" y2="25.188" width="0.254" layer="1"/>
-<wire x1="57.362" y1="25.188" x2="56.642" y2="25.908" width="0.254" layer="1"/>
-<wire x1="56.642" y1="25.908" x2="56.642" y2="30.85" width="0.254" layer="1"/>
 <wire x1="60.071" y1="37.211" x2="61.214" y2="36.068" width="0.254" layer="1"/>
 <wire x1="61.214" y1="36.068" x2="61.976" y2="36.068" width="0.254" layer="1"/>
 <wire x1="61.976" y1="36.068" x2="62.738" y2="36.068" width="0.254" layer="1"/>
@@ -13614,12 +13611,6 @@ design rules under a new name.</description>
 <wire x1="54.864" y1="40.386" x2="54.864" y2="38.216" width="0.254" layer="1"/>
 <wire x1="54.864" y1="38.216" x2="55.996" y2="37.084" width="0.254" layer="1"/>
 <wire x1="55.996" y1="37.084" x2="55.996" y2="35.052" width="0.254" layer="1"/>
-<wire x1="55.996" y1="35.052" x2="55.996" y2="33.898" width="0.254" layer="1"/>
-<wire x1="55.996" y1="33.898" x2="55.372" y2="33.274" width="0.254" layer="1"/>
-<wire x1="55.372" y1="33.274" x2="55.372" y2="31.242" width="0.254" layer="1"/>
-<wire x1="55.372" y1="31.242" x2="55.88" y2="30.734" width="0.254" layer="1"/>
-<wire x1="55.88" y1="30.734" x2="56.526" y2="30.734" width="0.254" layer="1"/>
-<wire x1="56.526" y1="30.734" x2="56.642" y2="30.85" width="0.254" layer="1"/>
 <wire x1="68.3514" y1="35.414" x2="67.456" y2="35.414" width="0.254" layer="1"/>
 <wire x1="67.456" y1="35.414" x2="67.056" y2="35.814" width="0.254" layer="1"/>
 <via x="67.056" y="35.814" extent="1-16" drill="0.508"/>
@@ -13670,9 +13661,16 @@ design rules under a new name.</description>
 <wire x1="89.292" y1="14.224" x2="89.8" y2="14.224" width="0.254" layer="1"/>
 <wire x1="89.8" y1="14.224" x2="90.435" y2="13.589" width="0.254" layer="1"/>
 <wire x1="88.138" y1="11.546" x2="87.492" y2="12.192" width="0.254" layer="1"/>
+<wire x1="56.642" y1="29.834" x2="56.642" y2="29.21" width="0.254" layer="1"/>
+<wire x1="56.642" y1="29.21" x2="59.69" y2="26.162" width="0.254" layer="1"/>
+<wire x1="59.69" y1="26.162" x2="60.706" y2="25.146" width="0.254" layer="1"/>
+<wire x1="60.706" y1="25.146" x2="61.898" y2="25.146" width="0.254" layer="1"/>
+<wire x1="61.898" y1="25.146" x2="61.94" y2="25.188" width="0.254" layer="1"/>
+<via x="59.69" y="26.162" extent="1-16" drill="0.508"/>
+<via x="60.198" y="42.164" extent="1-16" drill="0.508"/>
+<wire x1="60.198" y1="41.032" x2="60.198" y2="42.164" width="0.254" layer="1"/>
 <wire x1="92.964" y1="46.99" x2="95.95" y2="43.76" width="0" layer="19" extent="1-1"/>
 <wire x1="91.44" y1="24.268" x2="94.234" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="60.198" y1="41.032" x2="60.071" y2="37.211" width="0" layer="19" extent="1-1"/>
 <wire x1="96.876" y1="28.956" x2="94.234" y2="24.13" width="0" layer="19" extent="1-1"/>
 <wire x1="95.95" y1="32.36" x2="96.876" y2="28.956" width="0" layer="19" extent="1-1"/>
 <wire x1="96.05" y1="35.76" x2="95.95" y2="32.36" width="0" layer="19" extent="1-1"/>
@@ -13720,10 +13718,6 @@ design rules under a new name.</description>
 <contactref element="R1" pad="1"/>
 <contactref element="I2C_RES1" pad="1"/>
 <contactref element="I2C_RES2" pad="1"/>
-<wire x1="56.642" y1="32.65" x2="58.624" y2="32.65" width="0.254" layer="1"/>
-<wire x1="58.624" y1="32.65" x2="58.674" y2="32.7" width="0.254" layer="1"/>
-<wire x1="58.674" y1="32.7" x2="59.06" y2="32.7" width="0.254" layer="1"/>
-<wire x1="59.06" y1="32.7" x2="60.96" y2="30.8" width="0.254" layer="1"/>
 <wire x1="60.198" y1="39.232" x2="62.23" y2="39.232" width="0.254" layer="1"/>
 <wire x1="62.23" y1="39.232" x2="64.262" y2="39.232" width="0.254" layer="1"/>
 <wire x1="64.262" y1="39.232" x2="64.654" y2="39.232" width="0.254" layer="1"/>
@@ -13765,19 +13759,32 @@ design rules under a new name.</description>
 <wire x1="86.614" y1="13.97" x2="86.106" y2="13.462" width="0.254" layer="1"/>
 <wire x1="86.106" y1="13.462" x2="86.106" y2="7.112" width="0.254" layer="1"/>
 <wire x1="86.106" y1="7.112" x2="86.614" y2="6.604" width="0.254" layer="1"/>
+<wire x1="63.246" y1="29.784" x2="63.246" y2="29.464" width="0.254" layer="1"/>
+<wire x1="63.246" y1="29.464" x2="65.278" y2="27.432" width="0.254" layer="1"/>
+<wire x1="65.278" y1="27.432" x2="66.294" y2="27.432" width="0.254" layer="1"/>
+<wire x1="66.294" y1="27.432" x2="67.818" y2="25.908" width="0.254" layer="1"/>
+<wire x1="67.818" y1="25.908" x2="67.818" y2="22.352" width="0.254" layer="1"/>
+<wire x1="67.818" y1="22.352" x2="66.802" y2="21.336" width="0.254" layer="1"/>
+<wire x1="66.802" y1="21.336" x2="65.792" y2="21.336" width="0.254" layer="1"/>
+<wire x1="65.792" y1="21.336" x2="65.75" y2="21.378" width="0.254" layer="1"/>
+<wire x1="63.246" y1="29.784" x2="62.926" y2="29.784" width="0.254" layer="1"/>
+<wire x1="62.926" y1="29.784" x2="61.976" y2="30.734" width="0.254" layer="1"/>
+<wire x1="61.976" y1="30.734" x2="59.624" y2="30.734" width="0.254" layer="1"/>
+<wire x1="59.624" y1="30.734" x2="58.674" y2="31.684" width="0.254" layer="1"/>
+<wire x1="56.642" y1="31.634" x2="58.624" y2="31.634" width="0.254" layer="1"/>
+<wire x1="58.624" y1="31.634" x2="58.674" y2="31.684" width="0.254" layer="1"/>
 <wire x1="80.38" y1="37.338" x2="96.05" y2="37.96" width="0" layer="19" extent="1-1"/>
 <wire x1="76.9366" y1="35.414" x2="78.994" y2="38.354" width="0" layer="19" extent="1-1"/>
 <wire x1="69.85" y1="35.052" x2="75.438" y2="34.798" width="0" layer="19" extent="1-1"/>
 <wire x1="59.69" y1="45.72" x2="60.198" y2="39.232" width="0" layer="19" extent="1-1"/>
-<wire x1="59.06" y1="32.7" x2="60.198" y2="39.232" width="0" layer="19" extent="1-1"/>
+<wire x1="63.246" y1="29.784" x2="68.3514" y2="34.614" width="0" layer="19" extent="1-1"/>
 <wire x1="71.374" y1="45.72" x2="78.994" y2="40.574" width="0" layer="19" extent="1-1"/>
-<wire x1="65.75" y1="21.378" x2="60.96" y2="30.8" width="0" layer="19" extent="1-1"/>
 <wire x1="48.006" y1="45.72" x2="59.69" y2="45.72" width="0" layer="19" extent="1-1"/>
 <wire x1="36.322" y1="45.72" x2="48.006" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="34.036" y1="40.828" x2="36.322" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="30.988" y1="40.828" x2="34.036" y2="40.828" width="0" layer="19" extent="1-1"/>
-<wire x1="31.877" y1="36.3474" x2="30.988" y2="40.828" width="0" layer="19" extent="1-1"/>
-<wire x1="26.278" y1="39.116" x2="30.988" y2="40.828" width="0" layer="19" extent="1-1"/>
+<wire x1="34.036" y1="38.928" x2="36.322" y2="45.72" width="0" layer="19" extent="1-1"/>
+<wire x1="30.988" y1="38.928" x2="34.036" y2="38.928" width="0" layer="19" extent="1-1"/>
+<wire x1="31.877" y1="36.3474" x2="30.988" y2="38.928" width="0" layer="19" extent="1-1"/>
+<wire x1="26.278" y1="39.116" x2="30.988" y2="38.928" width="0" layer="19" extent="1-1"/>
 <wire x1="22.418" y1="36.576" x2="26.278" y2="39.116" width="0" layer="19" extent="1-1"/>
 <wire x1="24.638" y1="45.72" x2="26.278" y2="39.116" width="0" layer="19" extent="1-1"/>
 <wire x1="20.574" y1="45.72" x2="24.638" y2="45.72" width="0" layer="19" extent="1-1"/>
@@ -13863,8 +13870,8 @@ design rules under a new name.</description>
 <signal name="N$8">
 <contactref element="STATUS_LED" pad="A"/>
 <contactref element="STATUS_RES" pad="2"/>
-<wire x1="56.134" y1="39.382" x2="57.966" y2="39.382" width="0.254" layer="1"/>
-<wire x1="57.966" y1="39.382" x2="58.166" y2="39.182" width="0.254" layer="1"/>
+<wire x1="56.134" y1="39.382" x2="56.466" y2="39.382" width="0.254" layer="1"/>
+<wire x1="56.466" y1="39.382" x2="58.166" y2="41.082" width="0.254" layer="1"/>
 </signal>
 <signal name="N$9">
 <contactref element="ARDUINO-ATMEGA328" pad="31"/>
@@ -13892,7 +13899,7 @@ design rules under a new name.</description>
 <contactref element="STATUS_RES" pad="1"/>
 <wire x1="96.774" y1="21.59" x2="96.05" y2="36.86" width="0" layer="19" extent="1-1"/>
 <wire x1="76.9366" y1="33.014" x2="96.05" y2="36.86" width="0" layer="19" extent="1-1"/>
-<wire x1="58.166" y1="41.082" x2="76.9366" y2="33.014" width="0" layer="19" extent="1-1"/>
+<wire x1="58.166" y1="39.182" x2="76.9366" y2="33.014" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$4">
 <contactref element="FTDI" pad="DTR"/>
@@ -13971,23 +13978,32 @@ design rules under a new name.</description>
 <contactref element="ARDUINO-ATMEGA328" pad="2"/>
 <contactref element="GPS" pad="6"/>
 <contactref element="GPS_RES2" pad="2"/>
-<wire x1="60.96" y1="32.7" x2="68.3514" y2="37.814" width="0" layer="19" extent="1-1"/>
-<wire x1="61.94" y1="22.648" x2="60.96" y2="32.7" width="0" layer="19" extent="1-1"/>
+<wire x1="61.94" y1="22.648" x2="62.442" y2="22.648" width="0.254" layer="1"/>
+<wire x1="62.442" y1="22.648" x2="64.516" y2="20.574" width="0.254" layer="1"/>
+<wire x1="64.516" y1="20.574" x2="67.564" y2="20.574" width="0.254" layer="1"/>
+<wire x1="67.564" y1="20.574" x2="68.58" y2="21.59" width="0.254" layer="1"/>
+<wire x1="68.58" y1="21.59" x2="68.58" y2="26.162" width="0.254" layer="1"/>
+<wire x1="68.58" y1="26.162" x2="66.548" y2="28.194" width="0.254" layer="1"/>
+<wire x1="66.548" y1="28.194" x2="65.532" y2="28.194" width="0.254" layer="1"/>
+<wire x1="65.532" y1="28.194" x2="64.516" y2="29.21" width="0.254" layer="1"/>
+<wire x1="64.516" y1="29.21" x2="64.516" y2="30.414" width="0.254" layer="1"/>
+<wire x1="64.516" y1="30.414" x2="63.246" y2="31.684" width="0.254" layer="1"/>
+<wire x1="63.246" y1="31.684" x2="68.3514" y2="37.814" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GPS_RX">
 <contactref element="ARDUINO-ATMEGA328" pad="1"/>
 <contactref element="GPS_RES3" pad="1"/>
-<wire x1="63.246" y1="32.7" x2="68.3514" y2="38.614" width="0" layer="19" extent="1-1"/>
+<wire x1="60.96" y1="31.684" x2="68.3514" y2="38.614" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$13">
 <contactref element="GPS" pad="3"/>
 <contactref element="GPS_RES1" pad="1"/>
-<wire x1="58.674" y1="30.8" x2="58.674" y2="26.924" width="0.254" layer="1"/>
-<wire x1="58.674" y1="26.924" x2="59.436" y2="26.162" width="0.254" layer="1"/>
-<wire x1="59.436" y1="26.162" x2="63.5" y2="26.162" width="0.254" layer="1"/>
-<wire x1="63.5" y1="26.162" x2="64.262" y2="25.4" width="0.254" layer="1"/>
-<wire x1="64.262" y1="25.4" x2="64.262" y2="24.638" width="0.254" layer="1"/>
-<wire x1="64.262" y1="24.638" x2="65.024" y2="23.876" width="0.254" layer="1"/>
+<wire x1="58.674" y1="29.784" x2="58.674" y2="28.194" width="0.254" layer="1"/>
+<wire x1="58.674" y1="28.194" x2="59.69" y2="27.178" width="0.254" layer="1"/>
+<wire x1="59.69" y1="27.178" x2="63.5" y2="27.178" width="0.254" layer="1"/>
+<wire x1="63.5" y1="27.178" x2="64.516" y2="26.162" width="0.254" layer="1"/>
+<wire x1="64.516" y1="26.162" x2="64.516" y2="24.384" width="0.254" layer="1"/>
+<wire x1="64.516" y1="24.384" x2="65.024" y2="23.876" width="0.254" layer="1"/>
 <wire x1="65.024" y1="23.876" x2="65.708" y2="23.876" width="0.254" layer="1"/>
 <wire x1="65.708" y1="23.876" x2="65.75" y2="23.918" width="0.254" layer="1"/>
 </signal>
@@ -14017,7 +14033,16 @@ design rules under a new name.</description>
 <signal name="N$14">
 <contactref element="GPS" pad="5"/>
 <contactref element="GPS_RES3" pad="2"/>
-<wire x1="65.75" y1="22.648" x2="63.246" y2="30.8" width="0" layer="19" extent="1-1"/>
+<wire x1="60.96" y1="29.784" x2="60.96" y2="29.21" width="0.254" layer="1"/>
+<wire x1="60.96" y1="29.21" x2="62.23" y2="27.94" width="0.254" layer="1"/>
+<wire x1="62.23" y1="27.94" x2="63.754" y2="27.94" width="0.254" layer="1"/>
+<wire x1="63.754" y1="27.94" x2="65.024" y2="26.67" width="0.254" layer="1"/>
+<wire x1="65.024" y1="26.67" x2="66.04" y2="26.67" width="0.254" layer="1"/>
+<wire x1="66.04" y1="26.67" x2="67.056" y2="25.654" width="0.254" layer="1"/>
+<wire x1="67.056" y1="25.654" x2="67.056" y2="23.114" width="0.254" layer="1"/>
+<wire x1="67.056" y1="23.114" x2="66.548" y2="22.606" width="0.254" layer="1"/>
+<wire x1="66.548" y1="22.606" x2="65.792" y2="22.606" width="0.254" layer="1"/>
+<wire x1="65.792" y1="22.606" x2="65.75" y2="22.648" width="0.254" layer="1"/>
 </signal>
 <signal name="N$1">
 <contactref element="VREG" pad="4"/>
@@ -14044,8 +14069,8 @@ design rules under a new name.</description>
 <contactref element="ARDUINO-ATMEGA328" pad="27"/>
 <contactref element="I2C_RES1" pad="2"/>
 <wire x1="41.402" y1="45.72" x2="73.844" y2="40.1066" width="0" layer="19" extent="1-1"/>
-<wire x1="34.036" y1="38.928" x2="41.402" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="29.718" y1="45.72" x2="34.036" y2="38.928" width="0" layer="19" extent="1-1"/>
+<wire x1="34.036" y1="40.828" x2="41.402" y2="45.72" width="0" layer="19" extent="1-1"/>
+<wire x1="29.718" y1="45.72" x2="34.036" y2="40.828" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="I2C_SCL">
 <contactref element="I2C-1" pad="2"/>
@@ -14053,8 +14078,8 @@ design rules under a new name.</description>
 <contactref element="ARDUINO-ATMEGA328" pad="28"/>
 <contactref element="I2C_RES2" pad="2"/>
 <wire x1="38.862" y1="45.72" x2="73.044" y2="40.1066" width="0" layer="19" extent="1-1"/>
-<wire x1="30.988" y1="38.928" x2="38.862" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="27.178" y1="45.72" x2="30.988" y2="38.928" width="0" layer="19" extent="1-1"/>
+<wire x1="30.988" y1="40.828" x2="38.862" y2="45.72" width="0" layer="19" extent="1-1"/>
+<wire x1="27.178" y1="45.72" x2="30.988" y2="40.828" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ANLG7">
 <contactref element="ARDUINO-ATMEGA328" pad="22"/>
@@ -14141,21 +14166,6 @@ design rules under a new name.</description>
 <wire x1="31.75" y1="1.336" x2="29.464" y2="1.336" width="0.254" layer="1"/>
 </signal>
 </signals>
-<errors>
-<approved hash="4,1,10da9ff0ca0f5fde"/>
-<approved hash="4,1,473731605d0f94b4"/>
-<approved hash="4,1,b9884ac8480ea18a"/>
-<approved hash="4,1,74fd5e639b897dd3"/>
-<approved hash="4,1,473731605d0f94b4"/>
-<approved hash="4,1,e27cbf89cef2e05e"/>
-<approved hash="19,1,f39077395ed01d93"/>
-<approved hash="19,1,32f00e0e99d91ada"/>
-<approved hash="19,1,7b15cbffcc087ce2"/>
-<approved hash="4,16,10da9ff0ca0f5fde"/>
-<approved hash="4,16,b9884ac8480ea18a"/>
-<approved hash="4,16,74fd5e639b897dd3"/>
-<approved hash="4,16,e27cbf89cef2e05e"/>
-</errors>
 </board>
 </drawing>
 </eagle>
