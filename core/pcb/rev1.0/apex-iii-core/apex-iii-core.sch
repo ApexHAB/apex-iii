@@ -21074,7 +21074,7 @@ Cermet, abgedichtet nach IP67</description>
 <part name="GND25" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND26" library="SparkFun" deviceset="GND" device=""/>
 <part name="NTR2" library="apex" deviceset="NTR2" device=""/>
-<part name="UPL" library="linear" deviceset="CA3240E" device="D"/>
+<part name="OPAMP" library="linear" deviceset="CA3240E" device="D" value="MAX4477"/>
 <part name="UP_CAP1" library="SparkFun" deviceset="CAP" device="0805" value="47nF"/>
 <part name="GND27" library="SparkFun" deviceset="GND" device=""/>
 <part name="R2" library="resistor" deviceset="R-TRIMM" device="3214W" value="100K"/>
@@ -21310,7 +21310,7 @@ Cermet, abgedichtet nach IP67</description>
 <instance part="GND25" gate="1" x="71.12" y="76.2" rot="R270"/>
 <instance part="GND26" gate="1" x="27.94" y="41.91" rot="R270"/>
 <instance part="NTR2" gate="G$1" x="325.12" y="114.3"/>
-<instance part="UPL" gate="B" x="320.04" y="60.96" smashed="yes" rot="MR0">
+<instance part="OPAMP" gate="B" x="320.04" y="60.96" smashed="yes" rot="MR0">
 <attribute name="NAME" x="317.5" y="64.135" size="1.778" layer="95" rot="MR0"/>
 </instance>
 <instance part="UP_CAP1" gate="G$1" x="342.9" y="63.5" smashed="yes" rot="R270">
@@ -21337,8 +21337,8 @@ Cermet, abgedichtet nach IP67</description>
 <instance part="EXT_TX" gate="-3" x="81.28" y="33.02"/>
 <instance part="P+15" gate="1" x="76.2" y="43.18" rot="R90"/>
 <instance part="GND28" gate="1" x="73.66" y="38.1" rot="R270"/>
-<instance part="UPL" gate="A" x="264.16" y="63.5" rot="MR0"/>
-<instance part="UPL" gate="P" x="264.16" y="63.5"/>
+<instance part="OPAMP" gate="A" x="264.16" y="63.5" rot="MR0"/>
+<instance part="OPAMP" gate="P" x="264.16" y="63.5"/>
 <instance part="GND29" gate="1" x="264.16" y="50.8"/>
 <instance part="P+16" gate="1" x="264.16" y="78.74"/>
 <instance part="R1" gate="G$1" x="274.32" y="73.66" rot="R270"/>
@@ -21583,7 +21583,7 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="GND28" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="UPL" gate="P" pin="V-"/>
+<pinref part="OPAMP" gate="P" pin="V-"/>
 <wire x1="264.16" y1="55.88" x2="264.16" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="GND29" gate="1" pin="GND"/>
 </segment>
@@ -21723,7 +21723,7 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="P+15" gate="1" pin="VCC"/>
 </segment>
 <segment>
-<pinref part="UPL" gate="P" pin="V+"/>
+<pinref part="OPAMP" gate="P" pin="V+"/>
 <wire x1="264.16" y1="71.12" x2="264.16" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="P+16" gate="1" pin="VCC"/>
 <wire x1="264.16" y1="73.66" x2="264.16" y2="78.74" width="0.1524" layer="91"/>
@@ -22197,7 +22197,7 @@ Cermet, abgedichtet nach IP67</description>
 </net>
 <net name="N$20" class="0">
 <segment>
-<pinref part="UPL" gate="B" pin="+IN"/>
+<pinref part="OPAMP" gate="B" pin="+IN"/>
 <wire x1="337.82" y1="63.5" x2="327.66" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="UP_CAP1" gate="G$1" pin="2"/>
 <wire x1="340.36" y1="63.5" x2="337.82" y2="63.5" width="0.1524" layer="91"/>
@@ -22221,7 +22221,7 @@ Cermet, abgedichtet nach IP67</description>
 <net name="N$22" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="A"/>
-<pinref part="UPL" gate="B" pin="OUT"/>
+<pinref part="OPAMP" gate="B" pin="OUT"/>
 <wire x1="294.64" y1="60.96" x2="307.34" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="UP_CAP3" gate="G$1" pin="1"/>
 <wire x1="307.34" y1="60.96" x2="312.42" y2="60.96" width="0.1524" layer="91"/>
@@ -22241,7 +22241,7 @@ Cermet, abgedichtet nach IP67</description>
 <wire x1="299.72" y1="50.8" x2="307.34" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="50.8" x2="307.34" y2="53.34" width="0.1524" layer="91"/>
 <junction x="299.72" y="50.8"/>
-<pinref part="UPL" gate="B" pin="-IN"/>
+<pinref part="OPAMP" gate="B" pin="-IN"/>
 <wire x1="330.2" y1="58.42" x2="327.66" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="330.2" y1="50.8" x2="330.2" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="50.8" x2="330.2" y2="50.8" width="0.1524" layer="91"/>
@@ -22271,7 +22271,7 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="ARDUINO-ATMEGA328" gate="1" pin="DIGITAL_8"/>
 </segment>
 <segment>
-<pinref part="UPL" gate="A" pin="OUT"/>
+<pinref part="OPAMP" gate="A" pin="OUT"/>
 <wire x1="256.54" y1="63.5" x2="248.92" y2="63.5" width="0.1524" layer="91"/>
 <label x="248.92" y="63.5" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -22281,7 +22281,7 @@ Cermet, abgedichtet nach IP67</description>
 <pinref part="UP_CAP4" gate="G$1" pin="1"/>
 <wire x1="279.4" y1="60.96" x2="276.86" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="276.86" y1="60.96" x2="276.86" y2="55.88" width="0.1524" layer="91"/>
-<pinref part="UPL" gate="A" pin="-IN"/>
+<pinref part="OPAMP" gate="A" pin="-IN"/>
 <wire x1="276.86" y1="60.96" x2="271.78" y2="60.96" width="0.1524" layer="91"/>
 <junction x="276.86" y="60.96"/>
 <pinref part="UP_RES1" gate="G$1" pin="1"/>
@@ -22291,7 +22291,7 @@ Cermet, abgedichtet nach IP67</description>
 <segment>
 <pinref part="R1" gate="G$1" pin="S"/>
 <wire x1="274.32" y1="68.58" x2="274.32" y2="66.04" width="0.1524" layer="91"/>
-<pinref part="UPL" gate="A" pin="+IN"/>
+<pinref part="OPAMP" gate="A" pin="+IN"/>
 <wire x1="274.32" y1="66.04" x2="271.78" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
