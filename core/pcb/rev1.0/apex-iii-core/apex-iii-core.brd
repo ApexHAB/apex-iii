@@ -13614,7 +13614,7 @@ design rules under a new name.</description>
 <element name="GPS" library="SparkFun" package="LASSEN_IQ_GPS" value="LASSEN_IQ_GPSLASSEN" x="58.674" y="27.94" rot="R270"/>
 <element name="TEMP_DCPLG" library="SparkFun" package="0805" value="100nF" x="27.178" y="39.624" rot="R180"/>
 <element name="GPS_DCPLG" library="SparkFun" package="0805" value="100nF" x="56.642" y="30.734" rot="R270"/>
-<element name="NTR2_DCPLG2" library="SparkFun" package="0805" value="100uF" x="33.782" y="2.286" rot="R90"/>
+<element name="NTR2_DCPLG2" library="SparkFun" package="0805" value="47uF" x="33.782" y="2.286" rot="R90"/>
 <element name="SD_DCPLG" library="SparkFun" package="0805" value="100nF" x="81.28" y="39.624"/>
 <element name="VREG" library="linear-technology" package="SOIC8" value="LT1763CS8-3.3" x="93.98" y="14.224" rot="R270">
 <attribute name="OC_NEWARK" value="57M6055" x="59.69" y="-53.086" size="1.778" layer="27" rot="R270" display="off"/>
@@ -15049,22 +15049,6 @@ design rules under a new name.</description>
 <wire x1="31.11" y1="1.59" x2="29.21" y2="3.49" width="0.254" layer="1"/>
 </signal>
 </signals>
-<errors>
-<approved hash="4,1,10da9ff0ca0f5fde"/>
-<approved hash="4,1,473731605d0f94b4"/>
-<approved hash="4,1,b9884ac8480ea18a"/>
-<approved hash="4,1,74fd5e639b897dd3"/>
-<approved hash="4,1,473731605d0f94b4"/>
-<approved hash="4,1,e27cbf89cef2e05e"/>
-<approved hash="19,1,a890f14fd42b4a12"/>
-<approved hash="19,1,f39077395ed01d93"/>
-<approved hash="19,1,32f00e0e99d91ada"/>
-<approved hash="19,1,7b15cbffcc087ce2"/>
-<approved hash="4,16,10da9ff0ca0f5fde"/>
-<approved hash="4,16,b9884ac8480ea18a"/>
-<approved hash="4,16,74fd5e639b897dd3"/>
-<approved hash="4,16,e27cbf89cef2e05e"/>
-</errors>
 </board>
 </drawing>
 </eagle>

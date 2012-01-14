@@ -21146,7 +21146,7 @@ Cermet, abgedichtet nach IP67</description>
 <part name="GND17" library="SparkFun" deviceset="GND" device=""/>
 <part name="GPS_DCPLG" library="SparkFun" deviceset="CAP" device="0805" value="100nF"/>
 <part name="GND18" library="SparkFun" deviceset="GND" device=""/>
-<part name="NTR2_DCPLG2" library="SparkFun" deviceset="CAP" device="0805" value="100uF"/>
+<part name="NTR2_DCPLG2" library="SparkFun" deviceset="CAP" device="0805" value="47uF"/>
 <part name="GND19" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND20" library="SparkFun" deviceset="GND" device=""/>
 <part name="SD_DCPLG" library="SparkFun" deviceset="CAP" device="0805" value="100nF"/>
