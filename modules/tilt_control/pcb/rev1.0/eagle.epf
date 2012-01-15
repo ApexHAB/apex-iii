@@ -345,11 +345,51 @@ UsedLibrary="C:/Program Files (x86)/EAGLE-6.0.0/lbr/zilog.lbr"
 UsedLibrary="D:/My Documents/Work/SGS/Apex/Repos/apex-eagle-library/apex.lbr"
 
 [Win_1]
+Type="Board Editor"
+Loc="1912 -8 2511 391"
+State=1
+Number=1
+File="tiltcontrol.brd"
+View="3.57012 -3.77539 60.7583 39.2828"
+WireWidths=" 0 0.3048 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.254"
+PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
+PadDrills=" 0.508"
+ViaDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
+ViaDrills=" 0.508"
+HoleDrills=" 0.508"
+TextSizes=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.9304 2.1844 2.54 3.81 5.08 6.4516 1.778"
+PolygonSpacings=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 5.08 6.4516 1.27"
+PolygonIsolates=" 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0 0.254"
+MiterRadiuss=" 0.254 0.3175 0.635 1.27 2.54 1 2 2.5 5 7.5 10 0"
+SmdSizes=" 0.3048 0.1524 0.4064 0.2032 0.6096 0.3048 0.8128 0.4064 1.016 0.508 1.27 0.6604 1.4224 0.7112 1.6764 0.8128 1.778 0.9144 1.9304 0.9652 2.1844 1.0668 2.54 1.27 3.81 1.9304 5.08 2.54 6.4516 3.2512 1.27 0.635"
+WireBend=1
+WireBendSet=0
+WireCap=1
+MiterStyle=0
+PadShape=1
+ViaShape=1
+PolygonPour=0
+PolygonRank=1
+PolygonThermals=1
+PolygonOrphans=0
+TextRatio=15
+PinDirection=3
+PinFunction=0
+PinLength=2
+PinVisible=3
+SwapLevel=0
+ArcDirection=0
+AddLevel=2
+PadsSameType=0
+Layer=1
+
+[Win_2]
 Type="Control Panel"
-Loc="957 299 1919 698"
+Loc="1141 199 1740 598"
 State=2
 Number=0
 
 [Desktop]
 Screen="3840 1080"
 Window="Win_1"
+Window="Win_2"

@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -6386,19 +6386,6 @@ design rules under a new name.</description>
 <wire x1="28.006" y1="12.324" x2="25.842" y2="10.16" width="0.254" layer="1"/>
 <wire x1="45.466" y1="13.97" x2="39.944" y2="13.97" width="0.254" layer="1"/>
 <wire x1="39.944" y1="13.97" x2="39.878" y2="14.544" width="0.254" layer="1"/>
-<polygon width="0.254" layer="16" isolate="0.254">
-<vertex x="-1.27" y="34.544"/>
-<vertex x="-1.27" y="36.576"/>
-<vertex x="0.762" y="38.608"/>
-<vertex x="48.514" y="38.608"/>
-<vertex x="52.07" y="35.052"/>
-<vertex x="52.07" y="1.778"/>
-<vertex x="47.752" y="-2.54"/>
-<vertex x="2.286" y="-2.54"/>
-<vertex x="-1.524" y="1.27"/>
-<vertex x="-1.524" y="33.02"/>
-<vertex x="-1.27" y="33.274"/>
-</polygon>
 <wire x1="18.73" y1="30.988" x2="20.32" y2="30.988" width="0.254" layer="1"/>
 <via x="20.32" y="30.988" extent="1-16" drill="0.508"/>
 <wire x1="20.32" y1="30.988" x2="20.574" y2="30.988" width="0.254" layer="16"/>
@@ -6426,6 +6413,12 @@ design rules under a new name.</description>
 <via x="34.544" y="10.668" extent="1-16" drill="0.508"/>
 <wire x1="34.544" y1="10.668" x2="34.798" y2="10.668" width="0.254" layer="16"/>
 <wire x1="34.798" y1="10.668" x2="35.052" y2="10.922" width="0.254" layer="16"/>
+<polygon width="0.254" layer="16" isolate="0.254">
+<vertex x="0" y="36.83"/>
+<vertex x="50.8" y="36.83"/>
+<vertex x="50.8" y="0"/>
+<vertex x="0" y="0"/>
+</polygon>
 </signal>
 <signal name="SCL">
 <contactref element="I2C1" pad="2"/>
@@ -6613,15 +6606,14 @@ design rules under a new name.</description>
 <contactref element="R1" pad="2"/>
 <contactref element="U2" pad="RING"/>
 <wire x1="12.766" y1="30.988" x2="12.766" y2="31.562" width="0.254" layer="1"/>
-<wire x1="16.764" y1="31.75" x2="16.764" y2="30.988" width="0.254" layer="1"/>
 <wire x1="12.766" y1="30.988" x2="9.398" y2="30.988" width="0.254" layer="1"/>
 <wire x1="9.398" y1="30.988" x2="8.81" y2="30.4" width="0.254" layer="1"/>
-<wire x1="16.764" y1="31.75" x2="15.748" y2="32.766" width="0.254" layer="1"/>
 <wire x1="15.748" y1="32.766" x2="13.716" y2="32.766" width="0.254" layer="1"/>
 <wire x1="13.716" y1="32.766" x2="12.954" y2="32.004" width="0.254" layer="1"/>
 <wire x1="12.954" y1="32.004" x2="12.954" y2="31.176" width="0.254" layer="1"/>
 <wire x1="12.954" y1="31.176" x2="12.766" y2="30.988" width="0.254" layer="1"/>
-<wire x1="16.764" y1="30.988" x2="16.83" y2="30.988" width="0" layer="19" extent="1-1"/>
+<wire x1="16.83" y1="30.988" x2="16.83" y2="31.684" width="0.254" layer="1"/>
+<wire x1="16.83" y1="31.684" x2="15.748" y2="32.766" width="0.254" layer="1"/>
 </signal>
 <signal name="SER">
 <contactref element="IC1" pad="3"/>
