@@ -113,9 +113,8 @@
 <wire x1="2.54" y1="29.5" x2="0" y2="26.96" width="0" layer="20" curve="90"/>
 <wire x1="0" y1="26.96" x2="0" y2="2.54" width="0" layer="20"/>
 <wire x1="0" y1="2.54" x2="2.54" y2="0" width="0" layer="20" curve="90"/>
-<text x="27.432" y="26.152" size="1.6764" layer="21" ratio="15">APEXHAB</text>
-<text x="27.288" y="24.68" size="0.8128" layer="21" ratio="15">Philip Warren</text>
-<text x="27.288" y="23.41" size="0.8128" layer="21" ratio="15">Daniel Ko</text>
+<text x="27.559" y="23.866" size="3.302" layer="21" ratio="15">APEX</text>
+<text x="37.38" y="7.476" size="1.524" layer="22" ratio="15" rot="MR90">Philip Warren</text>
 <text x="13.5" y="15.5" size="1.27" layer="21" ratio="15" rot="R90">I2C</text>
 <text x="13.5" y="24.754" size="1.27" layer="21" ratio="15" rot="R90">I2C</text>
 <text x="10.616" y="10.95" size="1.016" layer="21" ratio="15">PICAXE</text>
@@ -127,6 +126,9 @@
 <text x="3.45" y="20.1" size="1.016" layer="21" ratio="15" rot="R90">3V3</text>
 <text x="27.206" y="16.492" size="1.27" layer="21" ratio="15">BALLOON</text>
 <text x="27.206" y="15" size="1.27" layer="21" ratio="15">PRESSURE</text>
+<text x="27.432" y="18.786" size="4.572" layer="21" ratio="15">HAB</text>
+<text x="38.312" y="1.634" size="1.143" layer="21" ratio="15" rot="R90">Daniel Ko</text>
+<text x="32.978" y="1.634" size="1.143" layer="21" ratio="15" rot="R90">Philip Warren</text>
 </plain>
 <libraries>
 <library name="mylibrary">
