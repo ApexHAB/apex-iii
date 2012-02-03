@@ -23,7 +23,7 @@
 
 // Addresses of sensors
 byte ext_temp_addr[8] = {0x28, 0x13, 0xF7, 0x73, 0x03, 0x00, 0x00, 0x2F};
-byte int_temp_addr[8] = {0x28, 0x35, 0x8C, 0x5E, 0x03, 0x00, 0x00, 0xDB};
+byte int_temp_addr[8] = {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84};
 
 // Define packet variable
 char packet[200];
@@ -34,7 +34,7 @@ void setup()
     Serial.begin(9600);
 
     Serial.println("/------------\\");
-    Serial.println("| Apex Alpha |");
+    Serial.println("|  Apex III  |");
     Serial.println("\\------------/");
 
     // Initialise status LED and then turn it on
@@ -46,7 +46,7 @@ void setup()
 
     // System booted
     Serial.println("");
-    Serial.println("Apex Alpha successfully booted");
+    Serial.println("Apex III successfully booted");
     Serial.println("");
 
     // Turn status LED off
@@ -79,13 +79,13 @@ void loop()
     // Send the packet with RTTY
     // @ 300 baud - preamble then 3 times
     rtty_preamble(1);
-    rtty_tx("$$ALPHA\r\n", 1);
+    rtty_tx("$$APEXIII\r\n", 1);
     rtty_tx(packet, 1);
     rtty_tx(packet, 1);
     rtty_tx(packet, 1);
     // @ 50 baud - preamble then 2 times
     rtty_preamble(0);
-    rtty_tx("$$ALPHA\r\n", 0);
+    rtty_tx("$$APEXIII\r\n", 0);
     rtty_tx(packet, 0);
     rtty_tx(packet, 0);
 
@@ -115,8 +115,7 @@ void build_packet()
     dtostrf(battery_get_voltage(),4,2,bv);
 
     // Build the packet
-    //sprintf(packet,"$$ALPHA,%u,%s,%s,%s",counter_get(),et,it,bv); // No GPS!
-    sprintf(packet,"$$ALPHA,%u,%s,%s,%s,%s",counter_get(),gps_get(),et,it,bv);
+    sprintf(packet,"$$APEXIII,%u,%s,%s,%s,%s",counter_get(),gps_get(),et,it,bv);
 }
 
 /**

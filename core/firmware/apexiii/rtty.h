@@ -25,7 +25,7 @@
 
 #define TX_0 5
 #define TX_1 6
-#define NTX2_EN 7
+#define NTR2_EN 7
 
 void rtty_init();
 char* rtty_prepare(char* sentence);

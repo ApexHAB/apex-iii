@@ -17,9 +17,9 @@ void rtty_init()
     pinMode(TX_1,OUTPUT);
     pinMode(TX_0,OUTPUT);
 
-    // Enable the NTX2
-    pinMode(NTX2_EN,OUTPUT);
-    digitalWrite(NTX2_EN,HIGH);
+    // Enable the NTR2
+    pinMode(NTR2_EN,OUTPUT);
+    digitalWrite(NTR2_EN,LOW);
 }
 
 char* rtty_prepare(char* sentence)

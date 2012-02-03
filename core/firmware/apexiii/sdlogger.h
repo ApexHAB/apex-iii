@@ -17,7 +17,7 @@
 #include "Fat16.h"
 #include "Fat16util.h"
 
-#define LOG_FILENAME "ALPHA.LOG"
+#define LOG_FILENAME "APEXIII.LOG"
 
 void sdlogger_log(char* sentence);
 

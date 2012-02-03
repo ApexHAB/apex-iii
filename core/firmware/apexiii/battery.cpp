@@ -15,6 +15,6 @@
 float battery_get_voltage()
 {
     float val = analogRead(BATTERY_PIN);
-    float volts = ((val/1023)*BATTERY_REFERENCE_VOLTS) / BATTERY_RESISTOR_RATIO;
+    float volts = (((val/1023) * BATTERY_REFERENCE_VOLTS) / BATTERY_RESISTOR_RATIO) * BATTERY_ADJUSTMENT;
     return volts;
 }
