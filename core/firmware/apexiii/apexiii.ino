@@ -10,17 +10,6 @@
  * team@apexhab.org
  */
 
-// Define constants (other pin numbers are defined in their respective header files)
-#define STATUS_LED_PIN 13
-
-//#define EXT_TEMP_ADDR {0x28, 0x13, 0xF7, 0x73, 0x03, 0x00, 0x00, 0x2F}
-//#define INT_TEMP_ADDR {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84}
-byte ext_temp_addr[8] = {0x28, 0x13, 0xF7, 0x73, 0x03, 0x00, 0x00, 0x2F};
-byte int_temp_addr[8] = {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84};
-
-#define SD_LOG_FILENAME "APEXIII.LOG"
-#define SD_CS 10
-
 // Include libraries
 #include <SD.h>
 
@@ -30,6 +19,13 @@ byte int_temp_addr[8] = {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84};
 #include "gps.h"
 #include "rtty.h"
 #include "battery.h"
+
+// Define constants (other pin numbers are defined in their respective header files)
+uint8_t STATUS_LED_PIN = 13;
+uint8_t EXT_TEMP_ADDR[8] = {0x28, 0x13, 0xF7, 0x73, 0x03, 0x00, 0x00, 0x2F};
+uint8_t INT_TEMP_ADDR[8] = {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84};
+char SD_LOG_FILENAME[] = "APEXIII.LOG";
+uint8_t SD_CS = 10;
 
 // Define packet variable
 char packet[200];
@@ -119,10 +115,10 @@ void build_packet()
 {
     // External temperature sensor
     char et[10];
-    dtostrf(temperature_get(ext_temp_addr),4,2,et);
+    dtostrf(temperature_get(EXT_TEMP_ADDR),4,2,et);
     // Internal temperature sensor
     char it[10];
-    dtostrf(temperature_get(int_temp_addr),4,2,it);
+    dtostrf(temperature_get(INT_TEMP_ADDR),4,2,it);
 
     // Battery voltage
     char bv[10];

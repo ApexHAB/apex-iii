@@ -26,7 +26,7 @@ char* gps_get()
     // sentence type currently
     bool correctNmeaType = false;
 
-    // The NMEA sentence type needed
+    // The NMEA sentence type needed (GPGGA)
     char nmeaType[6] = "GPGGA";
 
     // While the current sentence type is not needed sentence type
@@ -55,8 +55,8 @@ char* gps_get()
     }
 
     // Create a char array to contain the rest of the sentence
-    char data[100] = "";
-    data[0] = 0;
+    char data[120];
+    data[0] = 32; // Place a space in the first item
     uint8_t i = 1;
 
     // Place the rest of the sentence (upto the CR) into a buffer
@@ -66,6 +66,47 @@ char* gps_get()
         data[i] = gps.read();
         i++;
     }
+
+    // Listen for the next GPVTG string next
+    correctNmeaType = false;
+    strcpy(nmeaType, "GPVTG");
+    i -= 1; // Erase the carriage return
+    
+    // While the current sentence type is not needed sentence type
+    while(!correctNmeaType)
+    {
+        // Wait for the start of a NMEA sentence
+        while(gps.read() != '$') {}
+
+        // Create a buffer for the NMEA sentence format
+        // and then set the last character of the buffer
+        // to a null character
+        char serbuf[6];
+        serbuf[5] = 0;
+
+        // Put NMEA sentence format into buffer 
+        for (int i=0; i<5; i++)
+        {
+            while (!gps.available()) {}
+            serbuf[i] = gps.read();
+        }
+
+        // Compare buffer with the specified NMEA type
+        // above and put the result in 'matches'
+        if((strncmp(nmeaType,serbuf,5) == 0) && (strlen(serbuf) >= 5))
+            correctNmeaType = true;
+    }
+
+    // Place the rest of the sentence (upto the CR) into a buffer
+    while(data[i-1] != 13)
+    {
+        while(!gps.available()) {}
+        data[i] = gps.read();
+        i++;
+    }
+    
+    // Null terminate the string
+    data[i] = 0;
 
     // Check for GPS Fix
     if(data[37] == '1' || data[37] == '2')
@@ -92,6 +133,8 @@ char* gps_get()
         gps_strCopy(data,parsed+strlen(parsed),47,5);
         strcat(parsed,",");
         gps_strCopy(data,parsed+strlen(parsed),39,2);
+        strcat(parsed,",");
+        gps_strCopy(data,parsed+strlen(parsed),90,5);
 
         // Return the parsed data
         return parsed;
@@ -99,7 +142,7 @@ char* gps_get()
     // If there is no fix, return empty fields
     else
     {
-        return ",,,,";
+        return ",,,,,";
     }
 
     // End the software serial session to the GPS
