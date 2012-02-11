@@ -1,6 +1,20 @@
 /*
-Copyright (c) 2007, Jim Studt
+Copyright (c) 2007, Jim Studt  (original old version - many contributors since)
 
+The latest version of this library may be found at:
+  http://www.pjrc.com/teensy/td_libs_OneWire.html
+
+Version 2.1:
+  Arduino 1.0 compatibility, Paul Stoffregen
+  Improve temperature example, Paul Stoffregen
+  DS250x_PROM example, Guillermo Lovato
+  PIC32 (chipKit) compatibility, Jason Dangel, dangel.jason AT gmail.com
+  Improvements from Glenn Trewitt:
+  - crc16() now works
+  - check_crc16() does all of calculation/checking work.
+  - Added read_bytes() and write_bytes(), to reduce tedious loops.
+  - Added ds2408 example.
+  Delete very old, out-of-date readme file (info is here)
 
 Version 2.0: Modifications by Paul Stoffregen, January 2010:
 http://www.pjrc.com/teensy/td_libs_OneWire.html
@@ -25,6 +39,10 @@ Updated to work with arduino-0008 and to include skip() as of
 Modified to calculate the 8-bit CRC directly, avoiding the need for
 the 256-byte lookup table to be loaded in RAM.  Tested in arduino-0010
 -- Tom Pollard, Jan 23, 2008
+
+Jim Studt's original library was modified by Josh Larios.
+
+Tom Pollard, pollard@alum.mit.edu, contributed around May 20, 2008
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -79,30 +97,17 @@ sample code bearing this copyright.
 */
 
 #include "OneWire.h"
-#include "pins_arduino.h"
 
-extern "C" {
-#include "WConstants.h"
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <avr/pgmspace.h>
-}
 
 OneWire::OneWire(uint8_t pin)
 {
-	bitmask =  digitalPinToBitMask(pin);
-	baseReg = portInputRegister(digitalPinToPort(pin));
+	pinMode(pin, INPUT);
+	bitmask = PIN_TO_BITMASK(pin);
+	baseReg = PIN_TO_BASEREG(pin);
 #if ONEWIRE_SEARCH
 	reset_search();
 #endif
 }
-
-
-#define DIRECT_READ(base, mask)		(((*(base)) & (mask)) ? 1 : 0)
-#define DIRECT_MODE_INPUT(base, mask)	((*(base+1)) &= ~(mask))
-#define DIRECT_MODE_OUTPUT(base, mask)	((*(base+1)) |= (mask))
-#define DIRECT_WRITE_LOW(base, mask)	((*(base+2)) &= ~(mask))
-#define DIRECT_WRITE_HIGH(base, mask)	((*(base+2)) |= (mask))
 
 
 // Perform the onewire reset function.  We will wait up to 250uS for
@@ -113,30 +118,30 @@ OneWire::OneWire(uint8_t pin)
 //
 uint8_t OneWire::reset(void)
 {
-	uint8_t mask=bitmask;
-	volatile uint8_t *reg asm("r30") = baseReg;
+	IO_REG_TYPE mask = bitmask;
+	volatile IO_REG_TYPE *reg IO_REG_ASM = baseReg;
 	uint8_t r;
 	uint8_t retries = 125;
 
-	cli();
+	noInterrupts();
 	DIRECT_MODE_INPUT(reg, mask);
-	sei();
+	interrupts();
 	// wait until the wire is high... just in case
 	do {
 		if (--retries == 0) return 0;
 		delayMicroseconds(2);
 	} while ( !DIRECT_READ(reg, mask));
 
-	cli();
+	noInterrupts();
 	DIRECT_WRITE_LOW(reg, mask);
 	DIRECT_MODE_OUTPUT(reg, mask);	// drive output low
-	sei();
+	interrupts();
 	delayMicroseconds(500);
-	cli();
+	noInterrupts();
 	DIRECT_MODE_INPUT(reg, mask);	// allow it to float
 	delayMicroseconds(80);
 	r = !DIRECT_READ(reg, mask);
-	sei();
+	interrupts();
 	delayMicroseconds(420);
 	return r;
 }
@@ -147,24 +152,24 @@ uint8_t OneWire::reset(void)
 //
 void OneWire::write_bit(uint8_t v)
 {
-	uint8_t mask=bitmask;
-	volatile uint8_t *reg asm("r30") = baseReg;
+	IO_REG_TYPE mask=bitmask;
+	volatile IO_REG_TYPE *reg IO_REG_ASM = baseReg;
 
 	if (v & 1) {
-		cli();
+		noInterrupts();
 		DIRECT_WRITE_LOW(reg, mask);
 		DIRECT_MODE_OUTPUT(reg, mask);	// drive output low
 		delayMicroseconds(10);
 		DIRECT_WRITE_HIGH(reg, mask);	// drive output high
-		sei();
+		interrupts();
 		delayMicroseconds(55);
 	} else {
-		cli();
+		noInterrupts();
 		DIRECT_WRITE_LOW(reg, mask);
 		DIRECT_MODE_OUTPUT(reg, mask);	// drive output low
 		delayMicroseconds(65);
 		DIRECT_WRITE_HIGH(reg, mask);	// drive output high
-		sei();
+		interrupts();
 		delayMicroseconds(5);
 	}
 }
@@ -175,18 +180,18 @@ void OneWire::write_bit(uint8_t v)
 //
 uint8_t OneWire::read_bit(void)
 {
-	uint8_t mask=bitmask;
-	volatile uint8_t *reg asm("r30") = baseReg;
+	IO_REG_TYPE mask=bitmask;
+	volatile IO_REG_TYPE *reg IO_REG_ASM = baseReg;
 	uint8_t r;
 
-	cli();
+	noInterrupts();
 	DIRECT_MODE_OUTPUT(reg, mask);
 	DIRECT_WRITE_LOW(reg, mask);
 	delayMicroseconds(3);
 	DIRECT_MODE_INPUT(reg, mask);	// let pin float, pull up will raise
-	delayMicroseconds(9);
+	delayMicroseconds(10);
 	r = DIRECT_READ(reg, mask);
-	sei();
+	interrupts();
 	delayMicroseconds(53);
 	return r;
 }
@@ -205,11 +210,22 @@ void OneWire::write(uint8_t v, uint8_t power /* = 0 */) {
 	OneWire::write_bit( (bitMask & v)?1:0);
     }
     if ( !power) {
-	cli();
+	noInterrupts();
 	DIRECT_MODE_INPUT(baseReg, bitmask);
 	DIRECT_WRITE_LOW(baseReg, bitmask);
-	sei();
+	interrupts();
     }
+}
+
+void OneWire::write_bytes(const uint8_t *buf, uint16_t count, bool power /* = 0 */) {
+  for (uint16_t i = 0 ; i < count ; i++)
+    write(buf[i]);
+  if (!power) {
+    noInterrupts();
+    DIRECT_MODE_INPUT(baseReg, bitmask);
+    DIRECT_WRITE_LOW(baseReg, bitmask);
+    interrupts();
+  }
 }
 
 //
@@ -223,6 +239,11 @@ uint8_t OneWire::read() {
 	if ( OneWire::read_bit()) r |= bitMask;
     }
     return r;
+}
+
+void OneWire::read_bytes(uint8_t *buf, uint16_t count) {
+  for (uint16_t i = 0 ; i < count ; i++)
+    buf[i] = read();
 }
 
 //
@@ -247,9 +268,9 @@ void OneWire::skip()
 
 void OneWire::depower()
 {
-	cli();
+	noInterrupts();
 	DIRECT_MODE_INPUT(baseReg, bitmask);
-	sei();
+	interrupts();
 }
 
 #if ONEWIRE_SEARCH
@@ -452,6 +473,7 @@ uint8_t OneWire::crc8( uint8_t *addr, uint8_t len)
 #else
 //
 // Compute a Dallas Semiconductor 8 bit CRC directly.
+// this is much slower, but much smaller, than the lookup table.
 //
 uint8_t OneWire::crc8( uint8_t *addr, uint8_t len)
 {
@@ -471,29 +493,32 @@ uint8_t OneWire::crc8( uint8_t *addr, uint8_t len)
 #endif
 
 #if ONEWIRE_CRC16
-static short oddparity[16] = { 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0 };
-
-//
-// Compute a Dallas Semiconductor 16 bit CRC. I have never seen one of
-// these, but here it is.
-//
-unsigned short OneWire::crc16(unsigned short *data, unsigned short len)
+bool OneWire::check_crc16(uint8_t* input, uint16_t len, uint8_t* inverted_crc)
 {
-    unsigned short i;
-    unsigned short crc = 0;
+    uint16_t crc = ~crc16(input, len);
+    return (crc & 0xFF) == inverted_crc[0] && (crc >> 8) == inverted_crc[1];
+}
 
-    for ( i = 0; i < len; i++) {
-	unsigned short cdata = data[len];
+uint16_t OneWire::crc16(uint8_t* input, uint16_t len)
+{
+    static const uint8_t oddparity[16] =
+        { 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0 };
+    uint16_t crc = 0;    // Starting seed is zero.
 
-	cdata = (cdata ^ (crc & 0xff)) & 0xff;
-	crc >>= 8;
+    for (uint16_t i = 0 ; i < len ; i++) {
+      // Even though we're just copying a byte from the input,
+      // we'll be doing 16-bit computation with it.
+      uint16_t cdata = input[i];
+      cdata = (cdata ^ (crc & 0xff)) & 0xff;
+      crc >>= 8;
 
-	if (oddparity[cdata & 0xf] ^ oddparity[cdata >> 4]) crc ^= 0xc001;
+      if (oddparity[cdata & 0x0F] ^ oddparity[cdata >> 4])
+          crc ^= 0xC001;
 
-	cdata <<= 6;
-	crc ^= cdata;
-	cdata <<= 1;
-	crc ^= cdata;
+      cdata <<= 6;
+      crc ^= cdata;
+      cdata <<= 1;
+      crc ^= cdata;
     }
     return crc;
 }

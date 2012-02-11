@@ -15,12 +15,12 @@
 char* gps_get()
 {
     // Software serial
-    NewSoftSerial gps(GPS_RX, GPS_TX);
+    SoftwareSerial gps(GPS_RX, GPS_TX);
 
     // Begin software serial at 4800 baud
     gps.begin(4800);
     // Set GPS as active software serial device
-    gps.active();
+    gps.listen();
 
     // Boolean to store whether we have the correct NMEA 
     // sentence type currently
@@ -50,7 +50,8 @@ char* gps_get()
 
         // Compare buffer with the specified NMEA type
         // above and put the result in 'matches'
-        if((strncmp(nmeaType,serbuf,5) == 0) && (strlen(serbuf) >= 5)) correctNmeaType = true;
+        if((strncmp(nmeaType,serbuf,5) == 0) && (strlen(serbuf) >= 5))
+            correctNmeaType = true;
     }
 
     // Create a char array to contain the rest of the sentence

@@ -20,7 +20,7 @@
 #ifndef RTTY_H
 #define RTTY_H
 
-#include "WProgram.h"
+#include "Arduino.h"
 #include "util/crc16.h"
 
 #define TX_0 5

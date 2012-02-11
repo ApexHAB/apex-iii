@@ -13,7 +13,7 @@
 #ifndef BATTERY_H
 #define BATTERY_H
 
-#include "WProgram.h"
+#include "Arduino.h"
 
 #define BATTERY_PIN 0
 /*

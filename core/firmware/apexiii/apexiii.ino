@@ -1,5 +1,5 @@
 /**
- * apexiii.pde
+ * apexiii.ino
  *
  * Part of the Apex III project
  * http://www.apexhab.org/apex-iii/
@@ -10,20 +10,26 @@
  * team@apexhab.org
  */
 
+// Define constants (other pin numbers are defined in their respective header files)
+#define STATUS_LED_PIN 13
+
+//#define EXT_TEMP_ADDR {0x28, 0x13, 0xF7, 0x73, 0x03, 0x00, 0x00, 0x2F}
+//#define INT_TEMP_ADDR {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84}
+byte ext_temp_addr[8] = {0x28, 0x13, 0xF7, 0x73, 0x03, 0x00, 0x00, 0x2F};
+byte int_temp_addr[8] = {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84};
+
+#define SD_LOG_FILENAME "APEXIII.LOG"
+#define SD_CS 10
+
+// Include libraries
+#include <SD.h>
+
 // Include header files
 #include "counter.h"
 #include "temperature.h"
 #include "gps.h"
 #include "rtty.h"
-#include "sdlogger.h"
 #include "battery.h"
-
-// Define constants (other pin numbers are defined in their respective header files
-#define STATUS_LED_PIN 13
-
-// Addresses of sensors
-byte ext_temp_addr[8] = {0x28, 0x13, 0xF7, 0x73, 0x03, 0x00, 0x00, 0x2F};
-byte int_temp_addr[8] = {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84};
 
 // Define packet variable
 char packet[200];
@@ -33,6 +39,7 @@ void setup()
     // Setup serial
     Serial.begin(9600);
 
+    Serial.println();
     Serial.println("/------------\\");
     Serial.println("|  Apex III  |");
     Serial.println("\\------------/");
@@ -43,6 +50,10 @@ void setup()
 
     // Initialise radio module
     rtty_init();
+
+    // Initialise the SD card
+    pinMode(SD_CS, OUTPUT);
+    if (!SD.begin(SD_CS)) Serial.println("SD card failed to initialise");
 
     // System booted
     Serial.println("");
@@ -71,10 +82,12 @@ void loop()
     Serial.print(packet);
 
     // Write packet to SD card
-    sdlogger_log(packet); 
+    sdcard_log(packet); 
 
     // Telemetry
     Serial.print("Telemetry started... ");
+
+    delay(200);
 
     // Send the packet with RTTY
     // @ 300 baud - preamble then 3 times
@@ -98,6 +111,7 @@ void loop()
     // Check for any inputted UART commands
     uart_commands();
 }
+
 /**
  * Build the packet
  */
@@ -105,10 +119,10 @@ void build_packet()
 {
     // External temperature sensor
     char et[10];
-    dtostrf(temperature_get(TEMPERATURE_PIN,ext_temp_addr),4,2,et);
+    dtostrf(temperature_get(ext_temp_addr),4,2,et);
     // Internal temperature sensor
     char it[10];
-    dtostrf(temperature_get(TEMPERATURE_PIN,int_temp_addr),4,2,it);
+    dtostrf(temperature_get(int_temp_addr),4,2,it);
 
     // Battery voltage
     char bv[10];
@@ -116,6 +130,21 @@ void build_packet()
 
     // Build the packet
     sprintf(packet,"$$APEXIII,%u,%s,%s,%s,%s",counter_get(),gps_get(),et,it,bv);
+}
+
+/**
+ * Write sentence to SD card log 
+ */
+void sdcard_log(char* sentence)
+{
+    File logFile = SD.open(SD_LOG_FILENAME, FILE_WRITE);
+    
+    if (logFile)
+    {
+        logFile.print(sentence);
+    }
+
+    logFile.close();
 }
 
 /**

@@ -12,9 +12,9 @@
 
 #include "temperature.h"
 
-float temperature_get(int pin, uint8_t* addr)
+float temperature_get(uint8_t* addr)
 {
-    OneWire ds(pin);
+    OneWire ds(TEMPERATURE_PIN);
     byte data[9];
 
     // Reset OneWire and then select specified sensor
@@ -25,7 +25,7 @@ float temperature_get(int pin, uint8_t* addr)
     ds.write(0x44);
 
     // Wait while conversion is in process
-    while(digitalRead(pin) == 0) {}
+    while(digitalRead(TEMPERATURE_PIN) == 0) {}
 
     // Read scratchpad
     ds.reset();

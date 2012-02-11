@@ -13,8 +13,8 @@
 #ifndef GPS_H
 #define GPS_H
 
-#include "WProgram.h"
-#include "NewSoftSerial.h"
+#include "Arduino.h"
+#include "SoftwareSerial.h"
 
 #define GPS_RX 3
 #define GPS_TX 4

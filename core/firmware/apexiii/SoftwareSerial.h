@@ -1,11 +1,15 @@
 /*
-NewSoftSerial.h - Multi-instance software serial library
-Copyright (c) 2006 David A. Mellis.  All rights reserved.
+SoftwareSerial.h (formerly NewSoftSerial.h) - 
+Multi-instance software serial library for Arduino/Wiring
 -- Interrupt-driven receive and other improvements by ladyada
--- Tuning, circular buffer, derivation from class Print,
+   (http://ladyada.net)
+-- Tuning, circular buffer, derivation from class Print/Stream,
    multi-instance support, porting to 8MHz processors,
    various optimizations, PROGMEM delay tables, inverse logic and 
-   direct port writing by Mikal Hart
+   direct port writing by Mikal Hart (http://www.arduiniana.org)
+-- Pin change interrupt macros by Paul Stoffregen (http://www.pjrc.com)
+-- 20MHz processor support by Garrett Mace (http://www.macetech.com)
+-- ATmega1280/2560 support by Brett Hagman (http://www.roguerobotics.com/)
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -25,23 +29,22 @@ The latest version of this library can always be found at
 http://arduiniana.org.
 */
 
-#ifndef NewSoftSerial_h
-#define NewSoftSerial_h
+#ifndef SoftwareSerial_h
+#define SoftwareSerial_h
 
 #include <inttypes.h>
-#include "Print.h"
+#include <Stream.h>
 
 /******************************************************************************
 * Definitions
 ******************************************************************************/
 
-#define _NewSS_MAX_RX_BUFF 64 // RX buffer size
-#define _NewSS_VERSION 10 // software version of this library
+#define _SS_MAX_RX_BUFF 64 // RX buffer size
 #ifndef GCC_VERSION
 #define GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 #endif
 
-class NewSoftSerial : public Print
+class SoftwareSerial : public Stream
 {
 private:
   // per object data
@@ -60,15 +63,13 @@ private:
   uint16_t _inverse_logic:1;
 
   // static data
-  static char _receive_buffer[_NewSS_MAX_RX_BUFF]; 
+  static char _receive_buffer[_SS_MAX_RX_BUFF]; 
   static volatile uint8_t _receive_buffer_tail;
   static volatile uint8_t _receive_buffer_head;
-  static NewSoftSerial *active_object;
+  static SoftwareSerial *active_object;
 
   // private methods
   void recv();
-  bool activate();
-  virtual void write(uint8_t byte);
   uint8_t rx_pin_read();
   void tx_pin_write(uint8_t pin_state);
   void setTX(uint8_t transmitPin);
@@ -79,17 +80,21 @@ private:
 
 public:
   // public methods
-  NewSoftSerial(uint8_t receivePin, uint8_t transmitPin, bool inverse_logic = false);
-  ~NewSoftSerial();
+  SoftwareSerial(uint8_t receivePin, uint8_t transmitPin, bool inverse_logic = false);
+  ~SoftwareSerial();
   void begin(long speed);
+  bool listen();
   void end();
-  int read();
-  uint8_t available(void);
-  bool active() { return this == active_object; }
+  bool isListening() { return this == active_object; }
   bool overflow() { bool ret = _buffer_overflow; _buffer_overflow = false; return ret; }
-  static int library_version() { return _NewSS_VERSION; }
-  static void enable_timer0(bool enable);
-  void flush();
+  int peek();
+
+  virtual size_t write(uint8_t byte);
+  virtual int read();
+  virtual int available();
+  virtual void flush();
+  
+  using Print::write;
 
   // public only for easy access by interrupt handlers
   static inline void handle_interrupt();

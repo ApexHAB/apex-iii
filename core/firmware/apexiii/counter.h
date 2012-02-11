@@ -13,7 +13,7 @@
 #ifndef COUNTER_H
 #define COUNTER_H
 
-#include "WProgram.h"
+#include "Arduino.h"
 #include "EEPROM.h"
 
 #define EEPROM_LOW_BYTE 0
