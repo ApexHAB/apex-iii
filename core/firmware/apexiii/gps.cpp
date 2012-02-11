@@ -33,7 +33,7 @@ char* gps_get()
     while(!correctNmeaType)
     {
         // Wait for the start of a NMEA sentence
-        while(gps.read() != '$') {}
+        while(gps.read() != '$');
 
         // Create a buffer for the NMEA sentence format
         // and then set the last character of the buffer
@@ -44,7 +44,7 @@ char* gps_get()
         // Put NMEA sentence format into buffer 
         for (int i=0; i<5; i++)
         {
-            while (!gps.available()) {}
+            while (!gps.available());
             serbuf[i] = gps.read();
         }
 
@@ -62,7 +62,7 @@ char* gps_get()
     // Place the rest of the sentence (upto the CR) into a buffer
     while(data[i-1] != 13)
     {
-        while(!gps.available()) {}
+        while(!gps.available());
         data[i] = gps.read();
         i++;
     }
@@ -76,7 +76,7 @@ char* gps_get()
     while(!correctNmeaType)
     {
         // Wait for the start of a NMEA sentence
-        while(gps.read() != '$') {}
+        while(gps.read() != '$');
 
         // Create a buffer for the NMEA sentence format
         // and then set the last character of the buffer
@@ -87,7 +87,7 @@ char* gps_get()
         // Put NMEA sentence format into buffer 
         for (int i=0; i<5; i++)
         {
-            while (!gps.available()) {}
+            while (!gps.available());
             serbuf[i] = gps.read();
         }
 
@@ -100,7 +100,7 @@ char* gps_get()
     // Place the rest of the sentence (upto the CR) into a buffer
     while(data[i-1] != 13)
     {
-        while(!gps.available()) {}
+        while(!gps.available());
         data[i] = gps.read();
         i++;
     }
@@ -143,6 +143,87 @@ char* gps_get()
     else
     {
         return ",,,,,";
+    }
+
+    // End the software serial session to the GPS
+    gps.end();
+}
+
+char* gps_getAlt()
+{
+    // Software serial
+    SoftwareSerial gps(GPS_RX, GPS_TX);
+
+    // Begin software serial at 4800 baud
+    gps.begin(4800);
+    // Set GPS as active software serial device
+    gps.listen();
+
+    // Boolean to store whether we have the correct NMEA 
+    // sentence type currently
+    bool correctNmeaType = false;
+
+    // The NMEA sentence type needed (GPGGA)
+    char nmeaType[6] = "GPGGA";
+
+    // While the current sentence type is not needed sentence type
+    while(!correctNmeaType)
+    {
+        // Wait for the start of a NMEA sentence
+        while(gps.read() != '$') {}
+
+        // Create a buffer for the NMEA sentence format
+        // and then set the last character of the buffer
+        // to a null character
+        char serbuf[6];
+        serbuf[5] = 0;
+
+        // Put NMEA sentence format into buffer 
+        for (int i=0; i<5; i++)
+        {
+            while (!gps.available()) {}
+            serbuf[i] = gps.read();
+        }
+
+        // Compare buffer with the specified NMEA type
+        // above and put the result in 'matches'
+        if((strncmp(nmeaType,serbuf,5) == 0) && (strlen(serbuf) >= 5))
+            correctNmeaType = true;
+    }
+
+    // Create a char array to contain the rest of the sentence
+    char data[90];
+    data[0] = 32; // Place a space in the first item
+    uint8_t i = 1;
+
+    // Place the rest of the sentence (upto the CR) into a buffer
+    while(data[i-1] != 13)
+    {
+        while(!gps.available()) {}
+        data[i] = gps.read();
+        i++;
+    }
+
+    // Null terminate the string
+    data[i] = 0;
+
+    // Check for GPS Fix
+    if(data[37] == '1' || data[37] == '2')
+    {
+        // Create a char array for the parsed data
+        char alt[6];
+        sprintf(alt,"");
+
+        // Parse data
+        gps_strCopy(data,alt+strlen(alt),47,5);
+
+        // Return the parsed data
+        return alt;
+    }
+    // If there is no fix, return empty fields
+    else
+    {
+        return "00000";
     }
 
     // End the software serial session to the GPS

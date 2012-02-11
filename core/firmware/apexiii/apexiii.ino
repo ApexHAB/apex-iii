@@ -19,8 +19,9 @@
 #include "gps.h"
 #include "rtty.h"
 #include "battery.h"
+#include "modules.h"
 
-// Define constants (other pin numbers are defined in their respective header files)
+// Define settings
 uint8_t STATUS_LED_PIN = 13;
 uint8_t EXT_TEMP_ADDR[8] = {0x28, 0x13, 0xF7, 0x73, 0x03, 0x00, 0x00, 0x2F};
 uint8_t INT_TEMP_ADDR[8] = {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84};
@@ -29,6 +30,9 @@ uint8_t SD_CS = 10;
 
 // Define packet variable
 char packet[200];
+// Current altitude
+char altitude_c[6] = "";
+uint16_t altitude_i = 0;
 
 void setup()
 {
@@ -113,6 +117,15 @@ void loop()
  */
 void build_packet()
 {
+    // Get altitude
+    strcpy(altitude_c, gps_getAlt());
+    altitude_i = convert_altitude(altitude_c);
+
+    // Broadcast to modules
+    modules_broadcast(altitude_i);
+    delay(200);
+    Serial.write(modules_request(SNCD, altitude_i));
+
     // External temperature sensor
     char et[10];
     dtostrf(temperature_get(EXT_TEMP_ADDR),4,2,et);
@@ -141,6 +154,14 @@ void sdcard_log(char* sentence)
     }
 
     logFile.close();
+}
+
+/**
+ * Get altitude and convert to uint16_t
+ */
+uint16_t convert_altitude(char* input)
+{
+    return atoi(input);
 }
 
 /**
