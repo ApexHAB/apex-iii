@@ -59,16 +59,16 @@ main:
 
 reading:
 	' << Take a reading from the sensor >>
-	OUT0 = $AB
-	OUT1 = $CD
-	OUT2 = $EF
-	OUT3 = $12
+	OUT0 = $00
+	OUT1 = $00
+	OUT2 = $00
+	OUT3 = $00
 	' << End >>
 	return
 
 incoming:
 	' << Deal with incoming data from the core >>
-	if ALTITUDE < 3000 then
+	if ALTITUDE < 1000 then
 		high SIREN
 	else
 		low SIREN
@@ -78,7 +78,13 @@ incoming:
 		high CUTDOWN
 	else
 		low CUTDOWN
-	endif 
+	endif
+	
+	if COMMAND = $03 then
+		low SIREN
+	elseif COMMAND = $04 then
+		high SIREN
+	endif
 	' << End >>
 	return
 

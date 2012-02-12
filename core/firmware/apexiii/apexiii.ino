@@ -123,8 +123,6 @@ void build_packet()
 
     // Broadcast to modules
     modules_broadcast(altitude_i);
-    delay(200);
-    Serial.write(modules_request(SNCD, altitude_i));
 
     // External temperature sensor
     char et[10];
@@ -172,12 +170,12 @@ void uart_commands()
     if(Serial.available() >= 4)
     {
         // A $ signifies the start of a 3 character command
-        while((Serial.available() > 0) && (Serial.read() != '$')) {}
+        while ((Serial.available() > 0) && (Serial.read() != '$')) {}
 
-        if(Serial.available() >= 3)
+        if (Serial.available() >= 3)
         {
             char data[4];
-            for(int i=0; i<3; i++)
+            for (int i=0; i<3; i++)
             {
                 data[i] = Serial.read();
             }
@@ -195,8 +193,20 @@ void uart_commands()
  */
 void uart_commands_parse(char* cmd)
 {
-    if(strcmp(cmd,"RTC") == 0)
+    if (strcmp(cmd, "RTC") == 0)
     {
         counter_reset();
+    }
+    else if (strcmp(cmd, "CDN") == 0)
+    {
+        modules_broadcast(altitude_i, CDWN);
+    }
+    else if (strcmp(cmd, "SN0") == 0)
+    {
+        modules_broadcast(altitude_i, SRN0);
+    }
+    else if (strcmp(cmd, "SN1") == 0)
+    {
+        modules_broadcast(altitude_i, SRN1);
     }
 }

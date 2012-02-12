@@ -12,9 +12,9 @@
 
 #include "modules.h"
 
-void modules_broadcast(uint16_t altitude)
+void modules_broadcast(uint16_t altitude, commands command)
 {
-    modules_send(altitude, BDCT, NONE);
+    modules_send(altitude, BDCT, command);
 }
 
 char* modules_request(addresses address, uint16_t altitude, commands command)

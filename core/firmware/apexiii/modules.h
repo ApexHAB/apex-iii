@@ -20,7 +20,7 @@
 #define MODULES_RX 19
 #define MODULES_TX 18
 
-void modules_broadcast(uint16_t altitude);
+void modules_broadcast(uint16_t altitude, commands command = NONE);
 char* modules_request(addresses address, uint16_t altitude, commands command = NONE);
 void modules_send(uint16_t altitude, addresses address, commands command);
 char* modules_receive();

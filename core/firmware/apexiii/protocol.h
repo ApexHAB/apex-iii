@@ -24,7 +24,9 @@ enum commands
 {
     NONE = 0x00,
     PING = 0x01,
-    CDWN = 0x02
+    CDWN = 0x02,
+    SRN0 = 0x03,
+    SRN1 = 0x04
 };
 
 #endif

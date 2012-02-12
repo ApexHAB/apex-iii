@@ -2,5 +2,7 @@
 | COMMAND    | DESCRIPTION                               |
 ----------------------------------------------------------
 | $RTC       | Reset the tick counter back to 0          |
-| $---       |                                           |
+| $SN0       | Turn the siren off                        |
+| $SN1       | Turn the siren on                         |
+| $CDN       | Activate the cutdown                      |
 ----------------------------------------------------------
