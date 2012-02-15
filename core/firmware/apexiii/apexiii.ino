@@ -124,6 +124,9 @@ void build_packet()
     // Broadcast to modules
     modules_broadcast(altitude_i);
 
+    delay(500);
+    Serial.println(modules_request(SNCD, altitude_i));
+
     // External temperature sensor
     char et[10];
     dtostrf(temperature_get(EXT_TEMP_ADDR),4,2,et);

@@ -20,7 +20,9 @@ void modules_broadcast(uint16_t altitude, commands command)
 char* modules_request(addresses address, uint16_t altitude, commands command)
 {
     modules_send(altitude, address, command);
-    return modules_receive();
+
+    char* output = modules_receive();
+    return (output[0] == address) ? output : 0;
 }
 
 void modules_send(uint16_t altitude, addresses address, commands command)
@@ -45,13 +47,22 @@ char* modules_receive()
     SoftwareSerial bus(MODULES_RX, MODULES_TX);
     bus.begin(2400);
     
-    while (bus.read() != '#');
+    unsigned long time = millis();
+
+    while (bus.read() != '#')
+    {
+        if (millis() - time > 2000) break;
+    }
 
     char buffer[7];
     buffer[6] = 0;
     for (int i=0; i<6; i++)
     {
-        while (!bus.available());
+        time = millis();
+        while (!bus.available())
+        {
+            if (millis() - time > 1000) break;
+        }
         buffer[i] = bus.read();
     }
 

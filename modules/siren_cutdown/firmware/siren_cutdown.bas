@@ -38,12 +38,11 @@ symbol SIREN = 4
 ' << End >>
 
 main:
-	serin MOSI, T2400_4, ("#", $01, "+"), b0, b1, b2, b3
-
+	serin MOSI, T2400_4, ("#", $01, "+"), DESTINATION_ADDRESS, COMMAND, ALTITUDE_LOW, ALTITUDE_HIGH
 
 	if DESTINATION_ADDRESS = MODULE_ADDRESS then
 		gosub reply
-	else
+	elseif DESTINATION_ADDRESS = $00 then
 		gosub reading
 	endif
 	
