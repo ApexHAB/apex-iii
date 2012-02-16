@@ -22,7 +22,16 @@ char* modules_request(addresses address, uint16_t altitude, commands command)
     modules_send(altitude, address, command);
 
     char* output = modules_receive();
-    return (output[0] == address) ? output : 0;
+    
+    if (output[0] == address)
+    {
+        return output;
+    }
+    else
+    {
+        char error[7] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+        return error;
+    }
 }
 
 void modules_send(uint16_t altitude, addresses address, commands command)

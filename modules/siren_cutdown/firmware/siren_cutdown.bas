@@ -48,7 +48,7 @@ main:
 	
 	gosub incoming
 	
-	debug
+	'debug
 	
 	goto main
 
@@ -67,7 +67,7 @@ reading:
 
 incoming:
 	' << Deal with incoming data from the core >>
-	if ALTITUDE < 1000 then
+	if ALTITUDE < 3000 then
 		high SIREN
 	else
 		low SIREN
