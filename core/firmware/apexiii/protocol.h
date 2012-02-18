@@ -26,7 +26,8 @@ enum commands
     PING = 0x01,
     CDWN = 0x02,
     SRN0 = 0x03,
-    SRN1 = 0x04
+    SRN1 = 0x04,
+    ALTR = 0x05
 };
 
 #endif

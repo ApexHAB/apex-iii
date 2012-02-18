@@ -78,6 +78,10 @@ void loop()
     // Increment the counter
     counter_inc();
 
+    // Get altitude
+    strcpy(altitude_c, gps_getAlt());
+    altitude_i = convert_altitude(altitude_c);
+
     // Get data from external sensors and devices and then construct the packet
     build_packet();
 
@@ -109,10 +113,9 @@ void loop()
 
     log_gps();
 
-    // @ 50 baud - preamble then 2 times
+    // @ 50 baud - preamble then 1 time
     rtty_preamble(0);
     rtty_tx("$$APEXIII\r\n", 0);
-    rtty_tx(packet, 0);
     rtty_tx(packet, 0);
 
     Serial.println("finished");
@@ -134,10 +137,6 @@ void loop()
  */
 void build_packet()
 {
-    // Get altitude
-    strcpy(altitude_c, gps_getAlt());
-    altitude_i = convert_altitude(altitude_c);
-
     // Broadcast to modules
     modules_broadcast(altitude_i, command);
     command = NONE;
@@ -181,7 +180,7 @@ void log_gps()
     
     if (logFile)
     {
-        logFile.println(gps_get());
+        logFile.println(gps_getFull());
     }
 
     logFile.close();
@@ -245,5 +244,9 @@ void uart_commands_parse(char* cmd)
     else if (strcmp(cmd, "PNG") == 0)
     {
         command = PING;
+    }
+    else if (strcmp(cmd, "ALT") == 0)
+    {
+        command = ALTR;
     }
 }

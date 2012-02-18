@@ -6,4 +6,5 @@
 | $SN1       | Turn the siren on                         |
 | $CDN       | Activate the cutdown                      |
 | $PNG       | Send a ping command                       |
+| $ALT       | Send an altitude reset command            |
 ----------------------------------------------------------

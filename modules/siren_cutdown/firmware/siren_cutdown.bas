@@ -35,6 +35,12 @@ symbol OUTBYTE1 = w4
 ' << Custom symbols >>
 symbol CUTDOWN = 0
 symbol SIREN = 4
+
+symbol CUTDOWN_CYCLES = b10
+CUTDOWN_CYCLES = 0
+
+symbol ALTITUDE_EEPROM = 0
+symbol ALTITUDE_STORED = b11
 ' << End >>
 
 main:
@@ -48,7 +54,7 @@ main:
 	
 	gosub incoming
 	
-	'debug
+	debug
 	
 	goto main
 
@@ -67,16 +73,26 @@ reading:
 
 incoming:
 	' << Deal with incoming data from the core >>
-	if ALTITUDE < 3000 then
-		high SIREN
-	else
+	if ALTITUDE > 3000 then
+		read ALTITUDE_EEPROM, ALTITUDE_STORED
+		if ALTITUDE_STORED = $00 then
+			ALTITUDE_STORED = $FF
+			write ALTITUDE_EEPROM, ALTITUDE_STORED
+		endif
 		low SIREN
+	else
+		read ALTITUDE_EEPROM, ALTITUDE_STORED
+		if ALTITUDE_STORED = $FF then
+			high SIREN
+		else
+			low SIREN
+		endif
 	endif
 	
-	if COMMAND = $02 then
-		high CUTDOWN
-	else
-		low CUTDOWN
+	if COMMAND = $05 then
+		ALTITUDE_STORED = $00
+		write ALTITUDE_EEPROM, ALTITUDE_STORED
+		low SIREN
 	endif
 	
 	if COMMAND = $03 then
@@ -84,6 +100,19 @@ incoming:
 	elseif COMMAND = $04 then
 		high SIREN
 	endif
+
+	if COMMAND = $02 then
+		CUTDOWN_CYCLES = 2
+	endif
+	
+	if CUTDOWN_CYCLES > 0 then
+		high CUTDOWN
+		if DESTINATION_ADDRESS = $00 then
+			CUTDOWN_CYCLES = CUTDOWN_CYCLES - 1
+		endif
+	else
+		low CUTDOWN
+	end if	
 	' << End >>
 	return
 
