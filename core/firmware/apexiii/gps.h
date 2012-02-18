@@ -20,8 +20,8 @@
 #define GPS_TX 4
 
 char* gps_get();
-char* gps_getFull();
-char* gps_getAlt();
-void gps_strCopy(char* str, char* dest, int pos, int len);
+void gps_nmea(char* buffer, char* nmea);
+char* gps_altitude();
+void gps_strcpy(char* str, char* dest, int pos, int len);
 
 #endif

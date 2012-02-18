@@ -73,14 +73,14 @@ void setup()
 
 void loop()
 {
-    log_gps();
+    sdcard_gps();
 
     // Increment the counter
     counter_inc();
 
     // Get altitude
-    strcpy(altitude_c, gps_getAlt());
-    altitude_i = convert_altitude(altitude_c);
+    strcpy(altitude_c, gps_altitude());
+    altitude_i = atoi(altitude_c);
 
     // Get data from external sensors and devices and then construct the packet
     build_packet();
@@ -94,14 +94,14 @@ void loop()
     // Write packet to SD card
     sdcard_log(packet); 
 
-    log_gps();
+    sdcard_gps();
 
     // Telemetry
     Serial.print("Telemetry started... ");
 
     delay(200);
 
-    log_gps();
+    sdcard_gps();
 
     // Send the packet with RTTY
     // @ 300 baud - preamble then 3 times
@@ -111,7 +111,7 @@ void loop()
     rtty_tx(packet, 1);
     rtty_tx(packet, 1);
 
-    log_gps();
+    sdcard_gps();
 
     // @ 50 baud - preamble then 1 time
     rtty_preamble(0);
@@ -120,12 +120,12 @@ void loop()
 
     Serial.println("finished");
     
-    log_gps();
+    sdcard_gps();
 
     // Delay until the next packet
     // This window is also for UART commands to be entered in
     delay(2000);
-    log_gps();
+    sdcard_gps();
     delay(2000);
 
     // Check for any inputted UART commands
@@ -174,24 +174,21 @@ void sdcard_log(char* sentence)
 /**
  * Write GPS data to SD card
  */
-void log_gps()
+void sdcard_gps()
 {
     File logFile = SD.open(SD_GPS_FILENAME, FILE_WRITE);
     
     if (logFile)
     {
-        logFile.println(gps_getFull());
+        char buffer_gpgga[90];
+        gps_nmea(buffer_gpgga, "GPGGA");
+        logFile.println(buffer_gpgga);
+        char buffer_gpvtg[90];
+        gps_nmea(buffer_gpvtg, "GPVTG"); 
+        logFile.println(buffer_gpvtg);
     }
 
     logFile.close();
-}
-
-/**
- * Get altitude and convert to uint16_t
- */
-uint16_t convert_altitude(char* input)
-{
-    return atoi(input);
 }
 
 /**
