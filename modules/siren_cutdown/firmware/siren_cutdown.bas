@@ -65,6 +65,7 @@ main:
 
 reading:
 	' << Take a reading from the sensor >>
+	' << Place data in OUT0 to OUT3 >>
 	OUT0 = $00
 	OUT1 = $00
 	OUT2 = $00
