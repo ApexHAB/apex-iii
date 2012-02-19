@@ -54,7 +54,7 @@ main:
 	
 	gosub incoming
 	
-	debug
+	'debug
 	
 	goto main
 
