@@ -13,6 +13,9 @@
 #ifndef PROTOCOL_H
 #define PROTOCOL_H
 
+#define MODULE_DATA_LENGTH 4
+#define MODULE_BUFFER_LENGTH MODULE_DATA_LENGTH + 2
+
 enum addresses
 {
     BDCT = 0x00,

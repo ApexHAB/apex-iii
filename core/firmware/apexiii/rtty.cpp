@@ -22,7 +22,7 @@ void rtty_init()
     digitalWrite(NTR2_EN,LOW);
 }
 
-char* rtty_prepare(char* sentence)
+void rtty_prepare(char* sentence)
 {
     uint16_t checksum = rtty_crc16_ccitt_checksum(sentence);
 
@@ -31,8 +31,6 @@ char* rtty_prepare(char* sentence)
 
     strcat(sentence,checksum_string);
     strcat(sentence,"\r\n");
-
-    return sentence;
 }
 
 void rtty_tx(char* sentence, int baud)

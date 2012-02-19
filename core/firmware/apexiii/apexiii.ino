@@ -33,8 +33,7 @@ uint8_t SD_CS = 10;
 // Define packet variable
 char packet[200];
 // Current altitude
-char altitude_c[6] = "";
-uint16_t altitude_i = 0x0000;
+uint16_t altitude = 0;
 // Current command
 commands command = NONE;
 
@@ -79,14 +78,13 @@ void loop()
     counter_inc();
 
     // Get altitude
-    strcpy(altitude_c, gps_altitude());
-    altitude_i = atoi(altitude_c);
+    altitude = gps_altitude();
 
     // Get data from external sensors and devices and then construct the packet
     build_packet();
 
     // Store sent packet and prepare packet
-    sprintf(packet,rtty_prepare(packet));
+    rtty_prepare(packet);
 
     // Print packet to serial
     Serial.print(packet);
@@ -138,7 +136,7 @@ void loop()
 void build_packet()
 {
     // Broadcast to modules
-    modules_broadcast(altitude_i, command);
+    modules_broadcast(altitude, command);
     command = NONE;
 
     // External temperature sensor
@@ -152,8 +150,12 @@ void build_packet()
     char bv[10];
     dtostrf(battery_get_voltage(),4,2,bv);
 
+    // GPS 
+    char gps_data[65];
+    gps_get(gps_data); 
+
     // Build the packet
-    sprintf(packet,"$$APEXIII,%u,%s,%s,%s,%s",counter_get(),gps_get(),et,it,bv);
+    sprintf(packet,"$$APEXIII,%u,%s,%s,%s,%s",counter_get(),gps_data,et,it,bv);
 }
 
 /**

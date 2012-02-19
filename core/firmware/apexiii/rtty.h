@@ -28,7 +28,7 @@
 #define NTR2_EN 7
 
 void rtty_init();
-char* rtty_prepare(char* sentence);
+void rtty_prepare(char* sentence);
 void rtty_tx(char* sentence, int baud);
 void rtty_preamble(int baud);
 void rtty_tx_byte(char c, int baud);

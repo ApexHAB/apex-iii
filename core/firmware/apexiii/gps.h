@@ -19,9 +19,8 @@
 #define GPS_RX 3
 #define GPS_TX 4
 
-char* gps_get();
+void gps_get(char* data);
+uint16_t gps_altitude();
 void gps_nmea(char* buffer, char* nmea);
-char* gps_altitude();
-void gps_strcpy(char* str, char* dest, int pos, int len);
 
 #endif
