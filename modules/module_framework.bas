@@ -28,10 +28,10 @@ MODULE_ADDRESS = $FF
 
 symbol OUT0 = b6
 symbol OUT1 = b7
-symbol OUTBYTE0 = w3
+symbol OUTWORD0 = w3
 symbol OUT2 = b8
 symbol OUT3 = b9
-symbol OUTBYTE1 = w4
+symbol OUTWORD1 = w4
 
 ' << Custom symbols >>
 ' << End >>

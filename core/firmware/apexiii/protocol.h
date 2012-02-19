@@ -20,7 +20,13 @@ enum addresses
 {
     BDCT = 0x00,
     CORE = 0x01,
-    SNCD = 0x02
+    SNCD = 0x02,
+    RADN = 0x03,
+    PRES = 0x04,
+    TILT = 0x05,
+    ATOD = 0x06,
+    GASS = 0x07,
+    LGHT = 0x08
 };
 
 enum commands
