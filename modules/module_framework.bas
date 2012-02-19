@@ -57,7 +57,7 @@ main:
 
 reading:
 	' << Take a reading from the sensor >>
-	' << Place data in OUT0 to OUT3
+	' << Place data in OUT0 to OUT3 >>
 
 	' << End >>
 	return
