@@ -23,7 +23,7 @@ symbol ALTITUDE_HIGH = b3
 symbol ALTITUDE = w1
 
 symbol MODULE_ADDRESS = b4
-MODULE_ADDRESS = $08
+MODULE_ADDRESS = $09
 
 symbol OUT0 = b6
 symbol OUT1 = b7
