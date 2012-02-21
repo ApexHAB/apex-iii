@@ -71,7 +71,7 @@ rotateToSide:
 
     low DIRPIN
 
-    DO UNTIL POTPOSITION > POTUP
+    DO UNTIL POTPOSITION < POTSIDE
         readadc 1,POTPOSITION
         b3 = POTPOSITION - 100
         b3 = b3 * 4
