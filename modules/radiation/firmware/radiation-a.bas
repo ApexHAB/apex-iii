@@ -1,5 +1,5 @@
 '/**
-' * adc_lemon.bas
+' * radiation-a.bas
 ' *
 ' * Part of the Apex III project
 ' * http://www.apexhab.org/apex-iii/
