@@ -59,6 +59,8 @@ main:
 reading:
 	' << Take a reading from the sensor >>
 	' << Place data in OUT0 to OUT3 >>
+	OUT0 = 0
+	OUT1 = 0
 	serin [300], c.5, T2400_4, ("P"), OUT1
 	readadc c.4,OUT0
 	OUT0 = OUT0*200/255

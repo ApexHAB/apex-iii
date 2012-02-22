@@ -24,7 +24,7 @@
 
 // Define settings
 uint8_t STATUS_LED_PIN = 13;
-uint8_t EXT_TEMP_ADDR[8] = {0x28, 0xF5, 0x8B, 0x3E, 0x03, 0x00, 0x00, 0x85};
+uint8_t EXT_TEMP_ADDR[8] = {0x28, 0x8D, 0x0C, 0x68, 0x03, 0x00, 0x00, 0xF7};
 uint8_t INT_TEMP_ADDR[8] = {0x28, 0xEF, 0xC6, 0x5E, 0x03, 0x00, 0x00, 0x84};
 char SD_LOG_FILENAME[] = "APEXIII.LOG";
 char SD_GPS_FILENAME[] = "GPS.LOG";
@@ -140,22 +140,34 @@ void build_packet()
     command = NONE;
 
     // External temperature sensor
-    char et[10];
-    dtostrf(temperature_get(EXT_TEMP_ADDR),4,2,et);
+    char external_temp[10];
+    dtostrf(temperature_get(EXT_TEMP_ADDR),4,2,external_temp);
     // Internal temperature sensor
-    char it[10];
-    dtostrf(temperature_get(INT_TEMP_ADDR),4,2,it);
+    char internal_temp[10];
+    dtostrf(temperature_get(INT_TEMP_ADDR),4,2,internal_temp);
 
     // Battery voltage
-    char bv[10];
-    dtostrf(battery_get_voltage(),4,2,bv);
+    char battery_voltage[10];
+    dtostrf(battery_get_voltage(),4,2,battery_voltage);
 
     // GPS 
     char gps_data[65];
     gps_get(gps_data); 
 
+    // Pressure
+    char pressure[MODULES_BUFFER_LENGTH];
+    modules_request(pressure, PRES, altitude);
+
     // Build the packet
-    sprintf(packet,"$$APEXIII,%u,%s,%s,%s,%s",counter_get(),gps_data,et,it,bv);
+    sprintf(packet,"$$APEXIII,%u,%s,%s,%s,%u,%u,%s",
+        counter_get(),
+        gps_data,
+        external_temp,
+        internal_temp,
+        pressure[2],
+        pressure[3],
+        battery_voltage
+    );
 }
 
 /**
