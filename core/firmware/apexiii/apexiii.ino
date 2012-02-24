@@ -164,8 +164,8 @@ void build_packet()
         gps_data,
         external_temp,
         internal_temp,
-        pressure[2],
-        pressure[3],
+        (uint8_t) pressure[2],
+        (uint8_t) pressure[3],
         battery_voltage
     );
 }
