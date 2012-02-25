@@ -25,7 +25,7 @@ ORIENTATION = SIDE
 SYMBOL PWMPIN = 2
 SYMBOL DIRPIN = 0
 SYMBOL PERIOD = 1000
-SYMBOL PWMDUTY = w3
+SYMBOL DUTY = w3
 low PWMPIN
 low DIRPIN
 
@@ -51,8 +51,8 @@ rotateToUp:
         readadc 1,POTPOSITION
         b3 = 0 - 155 - POTPOSITION
         b3 = b3 * 4
-        PWMDUTY = POTPOSITION max 400
-        pwmout PWMPIN, 100, PWMDUTY
+        DUTY = POTPOSITION max 400
+        pwmout PWMPIN, 100, DUTY
     LOOP
 
     low DIRPIN
@@ -75,8 +75,8 @@ rotateToSide:
         readadc 1,POTPOSITION
         b3 = POTPOSITION - 100
         b3 = b3 * 4
-        PWMDUTY = POTPOSITION max 400
-        pwmout PWMPIN, 100, PWMDUTY
+        DUTY = POTPOSITION max 400
+        pwmout PWMPIN, 100, DUTY
     LOOP
 
     low DIRPIN
