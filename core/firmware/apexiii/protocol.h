@@ -21,13 +21,14 @@ enum addresses
     BDCT = 0x00,
     CORE = 0x01,
     SNCD = 0x02,
-    LGHT = 0x03,
+    LGTA = 0x03,
     PRES = 0x04,
     TILT = 0x05,
     ATOD = 0x06,
     GASS = 0x07,
     RADA = 0x08,
-    RADB = 0x09
+    RADB = 0x09,
+    LGTB = 0x0A
 };
 
 enum commands
