@@ -1,5 +1,5 @@
 '/**
-' * adc_lemon.bas
+' * radiation-a.bas
 ' *
 ' * Part of the Apex III project
 ' * http://www.apexhab.org/apex-iii/
@@ -23,7 +23,7 @@ symbol ALTITUDE_HIGH = b3
 symbol ALTITUDE = w1
 
 symbol MODULE_ADDRESS = b4
-MODULE_ADDRESS = $09
+MODULE_ADDRESS = $08
 
 symbol OUT0 = b6
 symbol OUT1 = b7

@@ -60,7 +60,7 @@ void modules_receive(char* buffer)
     }
 
     char* bufptr = buffer;
-    for (int i=0; i<MODULE_BUFFER_LENGTH; i++)
+    for (int i=0; i<MODULES_BUFFER_LENGTH; i++)
     {
         time = millis();
         while (!bus.available())
