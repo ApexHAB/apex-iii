@@ -24,11 +24,11 @@ symbol ALTITUDE = w1
 
 symbol MODULE_ADDRESS_A = b4
 ' Change this module address to the assigned address
-MODULE_ADDRESS = $03
+MODULE_ADDRESS_A = $03
 
 symbol MODULE_ADDRESS_B = b5
 ' Change this module address to the assigned address
-MODULE_ADDRESS = $0A
+MODULE_ADDRESS_B = $0A
 
 symbol OUT0 = b6
 symbol OUT1 = b7
@@ -38,15 +38,17 @@ symbol OUT3 = b9
 symbol OUTWORD1 = w4 ' G
 symbol OUT4 = b10
 symbol OUT5 = b11
-symbol OUTWORD0 = w5 ' B
+symbol OUTWORD2 = w5 ' B
 symbol OUT6 = b12
 symbol OUT7 = b13
-symbol OUTWORD1 = w6 ' Normal
+symbol OUTWORD3 = w6 ' Normal
 
-' << Custom symbols >>
-' << End >>
+symbol s2 = 0
+symbol s3 = 4
+symbol light = 3
 
 main:
+
 	serin MOSI, T2400_4, ("#", $01, "+"), DESTINATION_ADDRESS, COMMAND, ALTITUDE_LOW, ALTITUDE_HIGH
 
 	if DESTINATION_ADDRESS = MODULE_ADDRESS_A then
@@ -57,26 +59,21 @@ main:
 		gosub reading
 	endif
 	
-	gosub incoming
-	
-	'debug
-	
 	goto main
 
-' << Custom subs >>
-
-' << End >>
-
 reading:
-	' << Take a reading from the sensor >>
-	' << Place data in OUT0 to OUT3 >>
-
-	' << End >>
-	return
-
-incoming:
-	' << Deal with incoming data from the core >>
-	' << End >>
+SETFREQ M32
+	low s2
+	low s3
+	count light,50,OUTWORD0
+	high s3
+	count light,50,OUTWORD2
+	high s2
+	count light,50,OUTWORD1
+	low s3
+	count light,50,OUTWORD3
+	low s2
+SETFREQ M4	
 	return
 
 reply_a:
