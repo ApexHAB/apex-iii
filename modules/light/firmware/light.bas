@@ -82,11 +82,11 @@ incoming:
 reply_a:
 	high MISO
 	pause 25
-	serout MISO, T2400_4, ($00, "#", MODULE_ADDRESS, "+", OUT0, OUT1, OUT2, OUT3)
+	serout MISO, T2400_4, ($00, "#", MODULE_ADDRESS_A, "+", OUT0, OUT1, OUT2, OUT3)
 	return
 
 reply_b:
 	high MISO
 	pause 25
-	serout MISO, T2400_4, ($00, "#", MODULE_ADDRESS, "+", OUT4, OUT5, OUT6, OUT7)
+	serout MISO, T2400_4, ($00, "#", MODULE_ADDRESS_B, "+", OUT4, OUT5, OUT6, OUT7)
 	return
