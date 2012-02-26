@@ -104,7 +104,7 @@ void loop()
     // Send the packet with RTTY
     // @ 300 baud - preamble then 3 times
     rtty_preamble(1);
-    rtty_tx("$$APEXIII\r\n", 1);
+    rtty_tx("$$APEX\n", 1);
     rtty_tx(packet, 1);
     rtty_tx(packet, 1);
     rtty_tx(packet, 1);
@@ -113,7 +113,7 @@ void loop()
 
     // @ 50 baud - preamble then 1 time
     rtty_preamble(0);
-    rtty_tx("$$APEXIII\r\n", 0);
+    rtty_tx("$$APEX\n", 0);
     rtty_tx(packet, 0);
 
     Serial.println("finished");
@@ -154,18 +154,14 @@ void build_packet()
     char gps_data[65];
     gps_get(gps_data); 
 
-    // Pressure
-    char pressure[MODULES_BUFFER_LENGTH];
-    modules_request(pressure, PRES, altitude);
+    // Reminder - bytes from modules may need casting as int/uint
 
     // Build the packet
-    sprintf(packet,"$$APEXIII,%u,%s,%s,%s,%u,%u,%s",
+    sprintf(packet,"$$APEX,%u,%s,%s,%s,%s",
         counter_get(),
         gps_data,
         external_temp,
         internal_temp,
-        (uint8_t) pressure[2],
-        (uint8_t) pressure[3],
         battery_voltage
     );
 }
