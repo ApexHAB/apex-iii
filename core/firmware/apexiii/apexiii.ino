@@ -155,6 +155,13 @@ void build_packet()
     gps_get(gps_data); 
 
     // Reminder - bytes from modules may need casting as int/uint
+    char gas[MODULES_BUFFER_LENGTH];
+    modules_request(gas, LGTB, altitude);
+
+    Serial.println((uint8_t) gas[2]);
+    Serial.println((uint8_t) gas[3]);
+    Serial.println((uint8_t) gas[4]);
+    Serial.println((uint8_t) gas[5]);
 
     // Build the packet
     sprintf(packet,"$$APEX,%u,%s,%s,%s,%s",
