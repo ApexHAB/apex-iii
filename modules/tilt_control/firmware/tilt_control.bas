@@ -35,6 +35,7 @@ symbol OUTWORD1 = w4
 symbol UP = 1
 symbol SIDE = 0
 
+low 4
 
 main:
 	serin MOSI, T2400_4, ("#", $01, "+"), DESTINATION_ADDRESS, COMMAND, ALTITUDE_LOW, ALTITUDE_HIGH
@@ -49,19 +50,19 @@ main:
 
 incoming:
 	
-    if ALTITUDE < 25000 then gosub rotateToSide
-    if ALTITUDE > 26000 then gosub rotateToUp
+    if ALTITUDE < 24000 then gosub rotateToSide
+    if ALTITUDE > 25000 then gosub rotateToUp
    
     return
 
 rotateToSide:
     
-    SEROUT 4,T2400_4,("TILT",SIDE)
+    low 4
     return
 
 rotateToUp:
     
-    SEROUT 4,T2400_4,("TILT",UP)
+    high 4
     return
 
 reply:
