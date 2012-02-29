@@ -59,10 +59,12 @@ main:
 		gosub reading
 	endif
 	
+	'debug
+		
 	goto main
 
 reading:
-SETFREQ M32
+	SETFREQ M32
 	low s2
 	low s3
 	count light,50,OUTWORD0
@@ -73,7 +75,7 @@ SETFREQ M32
 	low s3
 	count light,50,OUTWORD3
 	low s2
-SETFREQ M4	
+	SETFREQ M4	
 	return
 
 reply_a:

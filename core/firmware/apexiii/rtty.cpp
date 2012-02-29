@@ -30,7 +30,7 @@ void rtty_prepare(char* sentence)
     sprintf(checksum_string,"*%04X",checksum);
 
     strcat(sentence,checksum_string);
-    strcat(sentence,"\r\n");
+    strcat(sentence,"\n");
 }
 
 void rtty_tx(char* sentence, int baud)
@@ -51,7 +51,7 @@ void rtty_tx(char* sentence, int baud)
 
 void rtty_preamble(int baud)
 {
-    char sentence[] = "UUUUUUUUUUUUUUUUUUUUUU\r\n";
+    char sentence[] = "UUUUUUUUU\n";
 
     // Disable interrupts
     noInterrupts();
