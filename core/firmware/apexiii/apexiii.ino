@@ -37,6 +37,8 @@ char packet[200];
 uint16_t altitude = 0;
 // Current command
 commands command = NONE;
+// Packet type
+uint8_t packet_type = 5;
 
 void setup()
 {
@@ -88,7 +90,7 @@ void loop()
     rtty_prepare(packet);
 
     // Print packet to serial
-    // * // Serial.print(packet);
+    Serial.print(packet);
 
     // Write packet to SD card
     sdcard_log(packet); 
@@ -96,12 +98,15 @@ void loop()
     sdcard_gps();
 
     // Telemetry
-    // * // Serial.print("Telemetry started... ");
+    Serial.print("Telemetry started... ");
 
     delay(100);
 
     sdcard_gps();
 
+    // Count down the packet type
+    packet_type -= 1;
+    
     // Send the packet with RTTY
     // @ 300 baud - preamble then 3 times
     rtty_preamble(1);
@@ -110,25 +115,28 @@ void loop()
     sdcard_gps();
     rtty_tx(packet, 1);
     sdcard_gps();
-    rtty_tx(packet, 1);
-    sdcard_gps();
-    // @ 50 baud - preamble then 1 time
-    rtty_preamble(0);
-    rtty_tx("$$APEX\n", 0);
-    rtty_tx(packet, 0);
 
-    // * // Serial.println("finished");
+    if (packet_type == 0)
+    {
+        packet_type = 5;
+        // @ 50 baud - preamble then 1 time
+        rtty_preamble(0);
+        rtty_tx("$$APEX\n", 0);
+        rtty_tx(packet, 0);
+    }
+
+    Serial.println("finished");
     
-    // * // sdcard_gps();
+    sdcard_gps();
 
     // Delay until the next packet
     // This window is also for UART commands to be entered in
-    // * // delay(2000);
-    // * // sdcard_gps();
-    // * // delay(2000);
+    delay(2000);
+    sdcard_gps();
+    delay(2000);
 
     // Check for any inputted UART commands
-    // * // uart_commands();
+    uart_commands();
 }
 
 /**

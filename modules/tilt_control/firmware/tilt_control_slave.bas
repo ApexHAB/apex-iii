@@ -17,8 +17,8 @@ symbol ORIENTATION = b2
 symbol UP = 1
 symbol SIDE = 0
 
-SYMBOL POTUP = 200
-SYMBOL POTSIDE = 100
+SYMBOL POTUP = 42
+SYMBOL POTSIDE = 105
 
 ORIENTATION = SIDE
 
@@ -30,28 +30,27 @@ low PWMPIN
 low DIRPIN
 
 main:
-    serin 4,T2400_4,("TILT"),COMMAND
-
-    if COMMAND = UP AND ORIENTATION = SIDE then gosub rotateToUp
-    if COMMAND = SIDE AND ORIENTATION = UP then gosub rotateToSide
-
+  
+    if pin4 = 1 then gosub rotateToUp
+    if pin4 = 0 then gosub rotateToSide
+  
+    
     goto main
 
 rotateToUp:
     
     readadc 1,POTPOSITION
-    if POTPOSITION > POTUP then
+    if POTPOSITION < POTUP then
         ORIENTATION = UP
         return
     endif
 
     high DIRPIN
 
-    DO UNTIL POTPOSITION > POTUP
+    DO UNTIL POTPOSITION < POTUP
         readadc 1,POTPOSITION
-        b3 = 0 - 155 - POTPOSITION
-        b3 = b3 * 4
-        DUTY = POTPOSITION max 400
+        DUTY = POTPOSITION
+        DUTY = DUTY * 2 max 400
         pwmout PWMPIN, 100, DUTY
     LOOP
 
@@ -64,19 +63,20 @@ rotateToUp:
 rotateToSide:
     
     readadc 1,POTPOSITION
-    if POTPOSITION < POTSIDE then
+    if POTPOSITION > POTSIDE then
         ORIENTATION = SIDE
         return
     endif
 
     low DIRPIN
 
-    DO UNTIL POTPOSITION < POTSIDE
+    DO UNTIL POTPOSITION > POTSIDE
         readadc 1,POTPOSITION
-        b3 = POTPOSITION - 100
-        b3 = b3 * 4
-        DUTY = POTPOSITION max 400
+        DUTY = 189 - POTPOSITION - 42
+        DUTY = DUTY * 3 max 400
+        'DUTY = 400
         pwmout PWMPIN, 100, DUTY
+        
     LOOP
 
     low DIRPIN
