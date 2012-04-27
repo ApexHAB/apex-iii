@@ -1,16 +1,16 @@
 <?xml version="1.0" standalone="yes"?>
 <kml xmlns="http://earth.google.com/kml/2.2">
   <Document>
-    <name><![CDATA[GPS data]]></name>
+    <name><![CDATA[Apex III L1 Flight Track]]></name>
     <visibility>1</visibility>
     <open>1</open>
-    <Snippet><![CDATA[created using <A href="http://www.gpsvisualizer.com/?ref=ge&time=1335546944">GPS Visualizer</A>]]></Snippet>
+    <Snippet><![CDATA[]]></Snippet>
     <Folder id="Tracks">
       <name>Tracks</name>
       <visibility>1</visibility>
       <open>0</open>
       <Placemark>
-        <name><![CDATA[GPS data]]></name>
+        <name><![CDATA[Apex III L1 Flight Track]]></name>
         <Snippet></Snippet>
         <description><![CDATA[&nbsp;]]></description>
         <Style>
