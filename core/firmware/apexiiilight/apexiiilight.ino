@@ -76,8 +76,7 @@ void loop()
     Serial.print(packet);
     delay(100);
 
-    // @ 50 baud - preamble then 1 time
-    rtty_preamble(0);
+    // @ 50 baud
     rtty_tx(packet, 0);
 }
 
